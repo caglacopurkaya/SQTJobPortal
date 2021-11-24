@@ -1,0 +1,61 @@
+﻿@model SQTJobPortal.Models.User
+@{
+    ViewBag.Title = "Login";
+    Layout = null;
+}
+
+<h2>Login</h2>
+
+
+<div class="container py-5">
+    <div class="card rounded-0">
+        <div class="card-header">
+            <h3 class="mb-0">Login</h3>
+        </div>
+        <div class="card-body">
+            @using (Html.BeginForm("Login","Account",new { returnUrl= Request.QueryString["ReturnUrl"] }, FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+            <div class="form-horizontal">
+                @Html.ValidationSummary(true)
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Username)
+                    @Html.TextBoxFor(model => model.Username, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Username)
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Password)
+                    @Html.PasswordFor(model => model.Password, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Password)
+                </div>
+
+                <div class="form-group">
+
+
+
+                    <fieldset>
+                        Account Type
+                        <select id="AccountType" name="AccountType">
+
+                            <option value=""></option>
+
+                            <option value="0">Company</option>
+
+                            <option selected="selected" value="1">Job Seeker</option>
+
+
+                        </select>
+
+                    </fieldset>
+                    @Html.ValidationMessageFor(model => model.AccountType)
+                </div>
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <button type="submit" class="btn btn-primary float-right rounded-0">Login</button>
+                <div>
+                    @Html.ActionLink("Click here to SignUp", "Signup")
+                </div>
+            </div>
+            }
+        </div>
+    </div>
+</div>

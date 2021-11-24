@@ -1,0 +1,12 @@
+﻿@using Microsoft.AspNet.Identity
+<div class="row">
+    <p>
+        @if (User.Identity.IsAuthenticated)
+            {
+           <h1> Welcome  @(User.Identity.IsAuthenticated ? HttpContext.Current.User.Identity.Name:"Guest") !</h1>
+
+           <a href="@Url.Action("SignOut","Account")"></a>
+            }
+    </p>
+</div>
+

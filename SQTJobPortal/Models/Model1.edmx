@@ -5,15 +5,6 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="SQTJobPortalModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="AllUser">
-          <Key>
-            <PropertyRef Name="UserId" />
-          </Key>
-          <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Username" Type="nvarchar" MaxLength="70" />
-          <Property Name="Password" Type="nvarchar" MaxLength="50" />
-          <Property Name="Email" Type="nvarchar" MaxLength="70" />
-        </EntityType>
         <EntityType Name="Category">
           <Key>
             <PropertyRef Name="CategoryId" />
@@ -99,13 +90,6 @@ warning 6002: The table/view 'SQTJobPortal.dbo.JobSkills' does not have a primar
           <Property Name="ProfessionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ProfessionName" Type="nvarchar" MaxLength="100" />
         </EntityType>
-        <EntityType Name="Roles">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="RoleName" Type="nvarchar" MaxLength="50" />
-        </EntityType>
         <EntityType Name="Skills">
           <Key>
             <PropertyRef Name="SkillId" />
@@ -135,14 +119,10 @@ warning 6002: The table/view 'SQTJobPortal.dbo.JobSkills' does not have a primar
           <Property Name="ContactMail" Type="nvarchar" MaxLength="150" />
           <Property Name="CountryId" Type="int" />
           <Property Name="TypeofProfessionId" Type="int" />
-        </EntityType>
-        <EntityType Name="UserRoleMapping">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="UserId" Type="int" />
-          <Property Name="RoleId" Type="int" />
+          <Property Name="Username" Type="nvarchar" MaxLength="100" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="150" />
+          <Property Name="AccountType" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <Association Name="FK__Job__CategoryId__47DBAE45">
           <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
@@ -201,30 +181,6 @@ warning 6002: The table/view 'SQTJobPortal.dbo.JobSkills' does not have a primar
             </Principal>
             <Dependent Role="JobSkills">
               <PropertyRef Name="SkillId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__UserRoleM__RoleI__398D8EEE">
-          <End Role="Roles" Type="Self.Roles" Multiplicity="0..1" />
-          <End Role="UserRoleMapping" Type="Self.UserRoleMapping" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Roles">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="UserRoleMapping">
-              <PropertyRef Name="RoleId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__UserRoleM__UserI__37A5467C">
-          <End Role="AllUser" Type="Self.AllUser" Multiplicity="0..1" />
-          <End Role="UserRoleMapping" Type="Self.UserRoleMapping" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AllUser">
-              <PropertyRef Name="UserId" />
-            </Principal>
-            <Dependent Role="UserRoleMapping">
-              <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -332,17 +288,14 @@ warning 6002: The table/view 'SQTJobPortal.dbo.JobSkills' does not have a primar
         </Function>
         <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="SQTJobPortalModelStoreContainer">
-          <EntitySet Name="AllUser" EntityType="Self.AllUser" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Contact" EntityType="Self.Contact" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Country" EntityType="Self.Country" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Job" EntityType="Self.Job" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Professions" EntityType="Self.Professions" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Skills" EntityType="Self.Skills" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TypeofProfession" EntityType="Self.TypeofProfession" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="UserRoleMapping" EntityType="Self.UserRoleMapping" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="JobRequest" EntityType="Self.JobRequest" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [JobRequest].[RequestId] AS [RequestId], 
@@ -391,14 +344,6 @@ warning 6002: The table/view 'SQTJobPortal.dbo.JobSkills' does not have a primar
             <End Role="Skills" EntitySet="Skills" />
             <End Role="JobSkills" EntitySet="JobSkills" />
           </AssociationSet>
-          <AssociationSet Name="FK__UserRoleM__RoleI__398D8EEE" Association="Self.FK__UserRoleM__RoleI__398D8EEE">
-            <End Role="Roles" EntitySet="Roles" />
-            <End Role="UserRoleMapping" EntitySet="UserRoleMapping" />
-          </AssociationSet>
-          <AssociationSet Name="FK__UserRoleM__UserI__37A5467C" Association="Self.FK__UserRoleM__UserI__37A5467C">
-            <End Role="AllUser" EntitySet="AllUser" />
-            <End Role="UserRoleMapping" EntitySet="UserRoleMapping" />
-          </AssociationSet>
           <AssociationSet Name="FK_Job_Professions" Association="Self.FK_Job_Professions">
             <End Role="Professions" EntitySet="Professions" />
             <End Role="Job" EntitySet="Job" />
@@ -428,16 +373,6 @@ warning 6002: The table/view 'SQTJobPortal.dbo.JobSkills' does not have a primar
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SQTJobPortalModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="AllUser">
-          <Key>
-            <PropertyRef Name="UserId" />
-          </Key>
-          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Username" Type="String" MaxLength="70" FixedLength="false" Unicode="true" />
-          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Email" Type="String" MaxLength="70" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="UserRoleMapping" Relationship="Self.FK__UserRoleM__UserI__37A5467C" FromRole="AllUser" ToRole="UserRoleMapping" />
-        </EntityType>
         <EntityType Name="Category">
           <Key>
             <PropertyRef Name="CategoryId" />
@@ -494,14 +429,6 @@ warning 6002: The table/view 'SQTJobPortal.dbo.JobSkills' does not have a primar
           <Property Name="ProfessionName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Job" Relationship="Self.FK_Job_Professions" FromRole="Professions" ToRole="Job" />
         </EntityType>
-        <EntityType Name="Roles">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="RoleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="UserRoleMapping" Relationship="Self.FK__UserRoleM__RoleI__398D8EEE" FromRole="Roles" ToRole="UserRoleMapping" />
-        </EntityType>
         <EntityType Name="Skills">
           <Key>
             <PropertyRef Name="SkillId" />
@@ -539,16 +466,10 @@ warning 6002: The table/view 'SQTJobPortal.dbo.JobSkills' does not have a primar
           <NavigationProperty Name="JobSeekerSkills" Relationship="Self.FK__JobSeeker__JobSe__4BAC3F29" FromRole="User" ToRole="JobSeekerSkills" />
           <NavigationProperty Name="JobRequest" Relationship="Self.FK_JobRequest_User" FromRole="User" ToRole="JobRequest" />
           <NavigationProperty Name="Job" Relationship="SQTJobPortalModel.FK_Job_User" FromRole="User" ToRole="Job" />
-        </EntityType>
-        <EntityType Name="UserRoleMapping">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UserId" Type="Int32" />
-          <Property Name="RoleId" Type="Int32" />
-          <NavigationProperty Name="AllUser" Relationship="Self.FK__UserRoleM__UserI__37A5467C" FromRole="UserRoleMapping" ToRole="AllUser" />
-          <NavigationProperty Name="Roles" Relationship="Self.FK__UserRoleM__RoleI__398D8EEE" FromRole="UserRoleMapping" ToRole="Roles" />
+          <Property Name="Username" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="AccountType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="JobRequest">
           <Key>
@@ -587,18 +508,6 @@ warning 6002: The table/view 'SQTJobPortal.dbo.JobSkills' does not have a primar
           <NavigationProperty Name="Job" Relationship="Self.FK__JobSkills__JobId__5BE2A6F2" FromRole="JobSkills" ToRole="Job" />
           <NavigationProperty Name="Skills" Relationship="Self.FK__JobSkills__Skill__5CD6CB2B" FromRole="JobSkills" ToRole="Skills" />
         </EntityType>
-        <Association Name="FK__UserRoleM__UserI__37A5467C">
-          <End Role="AllUser" Type="Self.AllUser" Multiplicity="0..1" />
-          <End Role="UserRoleMapping" Type="Self.UserRoleMapping" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AllUser">
-              <PropertyRef Name="UserId" />
-            </Principal>
-            <Dependent Role="UserRoleMapping">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__Job__CategoryId__47DBAE45">
           <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
           <End Role="Job" Type="Self.Job" Multiplicity="*" />
@@ -656,18 +565,6 @@ warning 6002: The table/view 'SQTJobPortal.dbo.JobSkills' does not have a primar
             </Principal>
             <Dependent Role="JobRequest">
               <PropertyRef Name="JobId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__UserRoleM__RoleI__398D8EEE">
-          <End Role="Roles" Type="Self.Roles" Multiplicity="0..1" />
-          <End Role="UserRoleMapping" Type="Self.UserRoleMapping" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Roles">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="UserRoleMapping">
-              <PropertyRef Name="RoleId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -732,24 +629,17 @@ warning 6002: The table/view 'SQTJobPortal.dbo.JobSkills' does not have a primar
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="SQTJobPortalEntities1" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="AllUser" EntityType="Self.AllUser" />
           <EntitySet Name="Category" EntityType="Self.Category" />
           <EntitySet Name="Contact" EntityType="Self.Contact" />
           <EntitySet Name="Country" EntityType="Self.Country" />
           <EntitySet Name="Job" EntityType="Self.Job" />
           <EntitySet Name="Professions" EntityType="Self.Professions" />
-          <EntitySet Name="Roles" EntityType="Self.Roles" />
           <EntitySet Name="Skills" EntityType="Self.Skills" />
           <EntitySet Name="TypeofProfession" EntityType="Self.TypeofProfession" />
           <EntitySet Name="User" EntityType="Self.User" />
-          <EntitySet Name="UserRoleMapping" EntityType="Self.UserRoleMapping" />
           <EntitySet Name="JobRequest" EntityType="Self.JobRequest" />
           <EntitySet Name="JobSeekerSkills" EntityType="Self.JobSeekerSkills" />
           <EntitySet Name="JobSkills" EntityType="Self.JobSkills" />
-          <AssociationSet Name="FK__UserRoleM__UserI__37A5467C" Association="Self.FK__UserRoleM__UserI__37A5467C">
-            <End Role="AllUser" EntitySet="AllUser" />
-            <End Role="UserRoleMapping" EntitySet="UserRoleMapping" />
-          </AssociationSet>
           <AssociationSet Name="FK__Job__CategoryId__47DBAE45" Association="Self.FK__Job__CategoryId__47DBAE45">
             <End Role="Category" EntitySet="Category" />
             <End Role="Job" EntitySet="Job" />
@@ -769,10 +659,6 @@ warning 6002: The table/view 'SQTJobPortal.dbo.JobSkills' does not have a primar
           <AssociationSet Name="FK_JobRequest_Job" Association="Self.FK_JobRequest_Job">
             <End Role="Job" EntitySet="Job" />
             <End Role="JobRequest" EntitySet="JobRequest" />
-          </AssociationSet>
-          <AssociationSet Name="FK__UserRoleM__RoleI__398D8EEE" Association="Self.FK__UserRoleM__RoleI__398D8EEE">
-            <End Role="Roles" EntitySet="Roles" />
-            <End Role="UserRoleMapping" EntitySet="UserRoleMapping" />
           </AssociationSet>
           <AssociationSet Name="FK__JobSeeker__Skill__4CA06362" Association="Self.FK__JobSeeker__Skill__4CA06362">
             <End Role="Skills" EntitySet="Skills" />
@@ -858,16 +744,6 @@ warning 6002: The table/view 'SQTJobPortal.dbo.JobSkills' does not have a primar
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="SQTJobPortalModelStoreContainer" CdmEntityContainer="SQTJobPortalEntities1">
-          <EntitySetMapping Name="AllUser">
-            <EntityTypeMapping TypeName="SQTJobPortalModel.AllUser">
-              <MappingFragment StoreEntitySet="AllUser">
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="Username" ColumnName="Username" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Category">
             <EntityTypeMapping TypeName="SQTJobPortalModel.Category">
               <MappingFragment StoreEntitySet="Category">
@@ -921,14 +797,6 @@ warning 6002: The table/view 'SQTJobPortal.dbo.JobSkills' does not have a primar
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Roles">
-            <EntityTypeMapping TypeName="SQTJobPortalModel.Roles">
-              <MappingFragment StoreEntitySet="Roles">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Skills">
             <EntityTypeMapping TypeName="SQTJobPortalModel.Skills">
               <MappingFragment StoreEntitySet="Skills">
@@ -948,6 +816,10 @@ warning 6002: The table/view 'SQTJobPortal.dbo.JobSkills' does not have a primar
           <EntitySetMapping Name="User">
             <EntityTypeMapping TypeName="SQTJobPortalModel.User">
               <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="AccountType" ColumnName="AccountType" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
                 <ScalarProperty Name="SeekerId" ColumnName="SeekerId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Phone" ColumnName="Phone" />
@@ -959,15 +831,6 @@ warning 6002: The table/view 'SQTJobPortal.dbo.JobSkills' does not have a primar
                 <ScalarProperty Name="ContactMail" ColumnName="ContactMail" />
                 <ScalarProperty Name="CountryId" ColumnName="CountryId" />
                 <ScalarProperty Name="TypeofProfessionId" ColumnName="TypeofProfessionId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="UserRoleMapping">
-            <EntityTypeMapping TypeName="SQTJobPortalModel.UserRoleMapping">
-              <MappingFragment StoreEntitySet="UserRoleMapping">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

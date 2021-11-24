@@ -1,25 +1,15 @@
-﻿using System;
+﻿using SQTJobPortal.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Security;
 
-namespace SQTJobPortal.Models
+namespace SQTJobPortal.MyRoleProvider
 {
-    public class UserRoleProvider : RoleProvider
+    public class SiteRole : RoleProvider
     {
-        public override string ApplicationName
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-
-            set
-            {
-                throw new NotImplementedException();
-            }
-        }
+        public override string ApplicationName { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         public override void AddUsersToRoles(string[] usernames, string[] roleNames)
         {
@@ -48,17 +38,10 @@ namespace SQTJobPortal.Models
 
         public override string[] GetRolesForUser(string username)
         {
-            using (SQTJobPortalEntities1 db = new SQTJobPortalEntities1())
-            {
-                var userRoles = (from user in db.AllUser
-                                 join roleMapping in db.UserRoleMapping
-                                 on user.UserId equals roleMapping.UserId
-                                 join role in db.Roles
-                                 on roleMapping.RoleId equals role.Id
-                                 where user.Username == username
-                                 select role.RoleName).ToArray();
-                return userRoles;
-            }
+            SQTJobPortalEntities1 db = new SQTJobPortalEntities1();
+            string data = db.User.Where(x => x.Username == username).FirstOrDefault().AccountType;
+            string[] result = { data };
+            return result;
         }
 
         public override string[] GetUsersInRole(string roleName)

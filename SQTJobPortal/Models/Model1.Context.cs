@@ -27,17 +27,14 @@ namespace SQTJobPortal.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<AllUser> AllUser { get; set; }
         public virtual DbSet<Category> Category { get; set; }
         public virtual DbSet<Contact> Contact { get; set; }
         public virtual DbSet<Country> Country { get; set; }
         public virtual DbSet<Job> Job { get; set; }
         public virtual DbSet<Professions> Professions { get; set; }
-        public virtual DbSet<Roles> Roles { get; set; }
         public virtual DbSet<Skills> Skills { get; set; }
         public virtual DbSet<TypeofProfession> TypeofProfession { get; set; }
         public virtual DbSet<User> User { get; set; }
-        public virtual DbSet<UserRoleMapping> UserRoleMapping { get; set; }
         public virtual DbSet<JobRequest> JobRequest { get; set; }
         public virtual DbSet<JobSeekerSkills> JobSeekerSkills { get; set; }
         public virtual DbSet<JobSkills> JobSkills { get; set; }

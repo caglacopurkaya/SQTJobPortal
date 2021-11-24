@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using SQTJobPortal.Models;
 using System.Net.Mail;
+using System.Web.Security;
 
 namespace SQTJobPortal.Controllers
 {
@@ -13,12 +14,16 @@ namespace SQTJobPortal.Controllers
 
         private readonly SQTJobPortalEntities1 db = new SQTJobPortalEntities1();
     
-        public ActionResult Index()
+       public ActionResult Index()  
+        {  
+            return View();  
+        }
+
+        public ActionResult Indexx()
         {
             return View();
         }
 
-   
         [HttpGet]
         public ActionResult Contact()
         {
@@ -45,7 +50,7 @@ namespace SQTJobPortal.Controllers
                 message.To.Add(p1.Email);
                 message.From = new MailAddress("mediagnosis@hotmail.com");
                 message.Subject = "Contact Process";
-                message.Body = "Dear" + " " + p1.Name + " " + "your mail has been succesfully sended." + "We will get back to you shortly.";
+                message.Body = "Dear" + " " + p1.Name + " " + "your mail has been succesfully sended." + "We will get back to you shortly. See you soon! " + "Dream Job";
 
 
                 client.Send(message);
