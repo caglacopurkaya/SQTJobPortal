@@ -23,6 +23,46 @@ namespace SQTJobPortal.Controllers
             return View(jobs.ToList());
         }
 
+        public PartialViewResult _CategoryList()
+        {
+            return PartialView(db.Category.ToList());
+        }
+
+        [Authorize(Roles = "Company")]
+        public ActionResult CompanyProfile(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+           User user = db.User.Find(id);
+            if (user == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.CountryId = new SelectList(db.Category, "CountryId", "CountryName",user.CountryId);
+            ViewBag.TypeOfProfessionId = new SelectList(db.Professions, "TypeOfProfessionId", "TypeOfProfessionName", user.TypeofProfessionId);
+
+            return View(user);
+        }
+
+        [Authorize(Roles = "Company")]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CompanyProfile([Bind(Include = "SeekerId,Name,Website,Phone,ContactMail,Address,CountryId,TypeOfProfessionId")] User user)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(user).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            ViewBag.CountryId = new SelectList(db.Category, "CountryId", "CountryName", user.CountryId);
+            ViewBag.TypeOfProfessionId = new SelectList(db.Professions, "TypeOfProfessionId", "TypeOfProfessionName", user.TypeofProfessionId);
+
+            return View(user);
+        }
+
         [Authorize(Roles = "Company,JobSeeker")]
         public ActionResult Details(int? id)
         {

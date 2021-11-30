@@ -45,6 +45,7 @@
           <Property Name="CategoryId" Type="int" />
           <Property Name="ProfessionId" Type="int" />
           <Property Name="UserId" Type="int" />
+          <Property Name="IsActive" Type="bit" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'SQTJobPortal.dbo.JobRequest' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -62,6 +63,8 @@ warning 6002: The table/view 'SQTJobPortal.dbo.JobRequest' does not have a prima
           <Property Name="FileContent" Type="varbinary(max)" />
           <Property Name="JobId" Type="int" />
           <Property Name="JobSeekerId" Type="int" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="ApplyDate" Type="date" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'SQTJobPortal.dbo.JobSeekerSkills' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -307,7 +310,9 @@ warning 6002: The table/view 'SQTJobPortal.dbo.JobSkills' does not have a primar
     [JobRequest].[CvName] AS [CvName], 
     [JobRequest].[FileContent] AS [FileContent], 
     [JobRequest].[JobId] AS [JobId], 
-    [JobRequest].[JobSeekerId] AS [JobSeekerId]
+    [JobRequest].[JobSeekerId] AS [JobSeekerId], 
+    [JobRequest].[IsActive] AS [IsActive], 
+    [JobRequest].[ApplyDate] AS [ApplyDate]
     FROM [dbo].[JobRequest] AS [JobRequest]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="JobSeekerSkills" EntityType="Self.JobSeekerSkills" store:Type="Tables" store:Schema="dbo">
@@ -420,6 +425,7 @@ warning 6002: The table/view 'SQTJobPortal.dbo.JobSkills' does not have a primar
           <NavigationProperty Name="Professions" Relationship="Self.FK_Job_Professions" FromRole="Job" ToRole="Professions" />
           <NavigationProperty Name="JobRequest" Relationship="Self.FK_JobRequest_Job" FromRole="Job" ToRole="JobRequest" />
           <NavigationProperty Name="User" Relationship="SQTJobPortalModel.FK_Job_User" FromRole="Job" ToRole="User" />
+          <Property Name="IsActive" Type="Boolean" />
         </EntityType>
         <EntityType Name="Professions">
           <Key>
@@ -487,6 +493,8 @@ warning 6002: The table/view 'SQTJobPortal.dbo.JobSkills' does not have a primar
           <Property Name="JobSeekerId" Type="Int32" />
           <NavigationProperty Name="Job" Relationship="Self.FK_JobRequest_Job" FromRole="JobRequest" ToRole="Job" />
           <NavigationProperty Name="User" Relationship="Self.FK_JobRequest_User" FromRole="JobRequest" ToRole="User" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="ApplyDate" Type="DateTime" Precision="0" />
         </EntityType>
         <EntityType Name="JobSeekerSkills">
           <Key>
@@ -774,6 +782,7 @@ warning 6002: The table/view 'SQTJobPortal.dbo.JobSkills' does not have a primar
           <EntitySetMapping Name="Job">
             <EntityTypeMapping TypeName="SQTJobPortalModel.Job">
               <MappingFragment StoreEntitySet="Job">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="JobId" ColumnName="JobId" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="CounterOfPost" ColumnName="CounterOfPost" />
@@ -837,6 +846,8 @@ warning 6002: The table/view 'SQTJobPortal.dbo.JobSkills' does not have a primar
           <EntitySetMapping Name="JobRequest">
             <EntityTypeMapping TypeName="SQTJobPortalModel.JobRequest">
               <MappingFragment StoreEntitySet="JobRequest">
+                <ScalarProperty Name="ApplyDate" ColumnName="ApplyDate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="RequestId" ColumnName="RequestId" />
                 <ScalarProperty Name="Phone" ColumnName="Phone" />
                 <ScalarProperty Name="Email" ColumnName="Email" />

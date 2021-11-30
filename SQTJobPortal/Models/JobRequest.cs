@@ -24,6 +24,8 @@ namespace SQTJobPortal.Models
         public byte[] FileContent { get; set; }
         public Nullable<int> JobId { get; set; }
         public Nullable<int> JobSeekerId { get; set; }
+        public Nullable<bool> IsActive { get; set; }
+        public Nullable<System.DateTime> ApplyDate { get; set; }
     
         public virtual Job Job { get; set; }
         public virtual User User { get; set; }

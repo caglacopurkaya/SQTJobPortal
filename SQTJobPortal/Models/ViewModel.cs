@@ -9,11 +9,11 @@ namespace SQTJobPortal.Models
     {
         public User companies { get; set; }
 
-        public  Category categories { get; set; }
+        public Category categories { get; set; }
         public Job jobs { get; set; }
 
         public JobRequest request { get; set; }
- 
-     
+
+
     }
 }
