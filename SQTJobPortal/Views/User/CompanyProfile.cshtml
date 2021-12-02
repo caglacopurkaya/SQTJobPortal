@@ -61,9 +61,9 @@
                                             @if (User.Identity.IsAuthenticated)
 
                                             {
-                                                <li class="nav-item">
-                                                    @Html.ActionLink("Home Page", "Index", "Account", new { @class = "nav-link" })
-                                                </li>
+                                            <li class="nav-item">
+                                                <a href="/Account/Index/@Model.SeekerId">Home Page</a>
+                                            </li>
                                                 <li class="nav-item">
                                                     <a href="/User/RequestList/@User.Identity.Name">Request List</a>
                                                     @*@Html.ActionLink("Request List", "RequestList", "User", new { @class = "nav-link" , id = Model.User.SeekerId })*@

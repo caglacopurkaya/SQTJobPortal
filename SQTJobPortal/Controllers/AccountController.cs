@@ -1,7 +1,9 @@
 ﻿using SQTJobPortal.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
+using System.Net;
 using System.Security.Claims;
 using System.Web;
 using System.Web.Mvc;
@@ -54,11 +56,13 @@ namespace SQTJobPortal.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Login(User model, string returnUrl)
         {
-            var dataItem = db.User.Where(x => x.Username == model.Username && x.Password == model.Password).First();
+            var dataItem = db.User.FirstOrDefault(x => x.Username == model.Username && x.Password == model.Password);
             if (dataItem != null)
             {
                 FormsAuthentication.SetAuthCookie(dataItem.Username, false);
-                if(Url.IsLocalUrl(returnUrl)&&returnUrl.Length>1&&returnUrl.StartsWith("/")&&!returnUrl.StartsWith("//")&& !returnUrl.StartsWith("/\\"))
+                var getCompanyId = db.User.SingleOrDefault(x => x.Username == model.Username).SeekerId;
+                CompanyHelper.id = getCompanyId;
+                if (Url.IsLocalUrl(returnUrl)&&returnUrl.Length>1&&returnUrl.StartsWith("/")&&!returnUrl.StartsWith("//")&& !returnUrl.StartsWith("/\\"))
                 {
                     return Redirect(returnUrl);
 
@@ -76,6 +80,8 @@ namespace SQTJobPortal.Controllers
 
     
         }
+
+       
 
         [Authorize]
         

@@ -35,12 +35,12 @@ namespace SQTJobPortal.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-           User user = db.User.Find(id);
+            User user = db.User.FirstOrDefault(x => x.SeekerId == id);
             if (user == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.CountryId = new SelectList(db.Category, "CountryId", "CountryName",user.CountryId);
+            ViewBag.CountryId = new SelectList(db.Category, "CountryId", "CountryName", user.CountryId);
             ViewBag.TypeOfProfessionId = new SelectList(db.Professions, "TypeOfProfessionId", "TypeOfProfessionName", user.TypeofProfessionId);
 
             return View(user);
@@ -62,6 +62,7 @@ namespace SQTJobPortal.Controllers
 
             return View(user);
         }
+
 
         [Authorize(Roles = "Company,JobSeeker")]
         public ActionResult Details(int? id)
