@@ -40,6 +40,7 @@ namespace SQTJobPortal.MyRoleProvider
         {
             SQTJobPortalEntities1 db = new SQTJobPortalEntities1();
             string data = db.User.Where(x => x.Username == username).FirstOrDefault().AccountType;
+            
             string[] result = { data };
             return result;
         }

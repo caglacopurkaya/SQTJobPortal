@@ -3,289 +3,335 @@
 @{
     Layout = null;
 }
-
 <!DOCTYPE html>
-
 <html>
+
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <!-- Tell the browser to be responsive to screen width -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <!-- Favicon icon -->
-    <!-- Custom CSS -->
-    <link href="~/assets/css/styleee.min.css" rel="stylesheet">
-    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.png">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <title>Welcome To Company Index</title>
+    <!-- Favicon-->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
 
-    <!-- CSS here -->
-    <link rel="stylesheet" href="~/site/assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="~/site/assets/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="~/site/assets/css/slicknav.css">
-    <link rel="stylesheet" href="~/site/assets/css/price_rangs.css">
-    <link rel="stylesheet" href="~/site/assets/css/animate.min.css">
-    <link rel="stylesheet" href="~/site/assets/css/magnific-popup.css">
-    <link rel="stylesheet" href="~/site/assets/css/fontawesome-all.min.css">
-    <link rel="stylesheet" href="~/site/assets/css/themify-icons.css">
-    <link rel="stylesheet" href="~/site/assets/css/themify-icons.css">
-    <link rel="stylesheet" href="~/site/assets/css/slick.css">
-    <link rel="stylesheet" href="~/site/assets/css/nice-select.css">
-    <link rel="stylesheet" href="~/site/assets/css/style.css">
-    <link rel="stylesheet" href="~/site/assets/css/responsive.css">
-    <title>CompanyProfile</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
+
+    <!-- Bootstrap Core Css -->
+    <link href="~/admin/plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+    <!-- Waves Effect Css -->
+    <link href="~/admin/plugins/node-waves/waves.css" rel="stylesheet" />
+
+    <!-- Animation Css -->
+    <link href="~/admin/plugins/animate-css/animate.css" rel="stylesheet" />
+
+    <!-- Morris Chart Css-->
+    <link href="~/admin/plugins/morrisjs/morris.css" rel="stylesheet" />
+
+    <!-- Custom Css -->
+    <link href="~/admin/css/style.css" rel="stylesheet">
+
+    <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
+    <link href="~/admin/css/themes/all-themes.css" rel="stylesheet" />
 </head>
-<body>
 
-    <header>
-        <!-- Header Start -->
-        <div class="header-area header-transparrent">
-            <div class="headder-top header-sticky">
-                <div class="container">
-                    <div class="row align-items-center">
-                        <div class="col-lg-3 col-md-2">
-                            <!-- Logo -->
-                            <div class="logo">
-                                <a href="index.html"><img src="~/site/assets/img/logo/logo.png" alt=""></a>
-                            </div>
-                        </div>
+<body class="theme-red">
+    <!-- Page Loader -->
+    <!-- #END# Page Loader -->
+    <!-- Overlay For Sidebars -->
+    <div class="overlay"></div>
+    <!-- #END# Overlay For Sidebars -->
+    <!-- Search Bar -->
+    <div class="search-bar">
+        <div class="search-icon">
+            <i class="material-icons">search</i>
+        </div>
+        <input type="text" placeholder="START TYPING...">
+        <div class="close-search">
+            <i class="material-icons">close</i>
+        </div>
+    </div>
+    <!-- #END# Search Bar -->
+    <!-- Top Bar -->
+    <nav class="navbar">
+        <div class="container-fluid">
 
-                        <div class="col-lg-9 col-md-9">
-                            <div class="menu-wrapper">
-                                <!-- Main-menu -->
-                                <div class="main-menu">
-                                    <nav class="d-none d-lg-block">
-                                        <ul id="navigation">
+        </div>
+    </nav>
+    <!-- #Top Bar -->
+    <section>
+        <!-- Left Sidebar -->
+        <aside id="leftsidebar" class="sidebar">
+            <!-- User Info -->
+            <div class="user-info">
+                <div class="image">
+                    <img src="~/Content/anonim-foto.png" width="48" height="48" alt="User" />
 
-                                            @if (User.Identity.IsAuthenticated)
+                </div>
+                <div class="info-container">
+                    <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Welcome  @(User.Identity.IsAuthenticated ? HttpContext.Current.User.Identity.Name:"Guest") !</div>
+                    <div class="email">@Model.Email</div>
 
-                                            {
-                                                <li class="nav-item">
-                                                    @Html.ActionLink("Home Page", "Index", "Account", new { @class = "nav-link" })
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a href="/User/Requests/@Model.SeekerId">Request List</a>
-                                                    @*@Html.ActionLink("Request List", "RequestList", "User", new { @class = "nav-link" , id = Model.User.SeekerId })*@
-                                                </li>
-                                                <li class="nav-item">
-                                                    @Html.ActionLink("Job Advertisement", "JobAdvertisement", "User", new { @class = "nav-link" })
-                                                </li>
-                                                <li class="nav-item">
-                                                    @Html.ActionLink("Contact", "Contact", "Home", new { @class = "nav-link" })
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a href="/User/CompanyProfile/@Model.SeekerId">Profile</a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a href="@Url.Action("SignOut","Account")">Sign Out</a>
-                                                </li>
-                                                <li class="nav-item">
-
-                                                    <h1 style="font-size:16px; padding-left:60px; text-align:left"> Welcome  @(User.Identity.IsAuthenticated ? HttpContext.Current.User.Identity.Name:"Guest") ! </h1>
-                                                </li>
-
-                                            }
-                                            else
-                                            {
-                                                <li class="nav-item">
-                                                    @Html.ActionLink("Home Page", "Index", "Home", new { @class = "nav-link" })
-                                                </li>
-                                                <li class="nav-item">
-                                                    @Html.ActionLink("Jobs", "JobList", "Home", new { @class = "nav-link" })
-                                                </li>
-                                                <li class="nav-item">
-                                                    @Html.ActionLink("Find Your Dream Job", "", "Account", new { @class = "nav-link" })
-                                                </li>
-                                                <li class="nav-item">
-                                                    @Html.ActionLink("Contact", "Contact", "Home", new { @class = "nav-link" })
-                                                </li>
-
-
-                                                <li class="nav-item">
-                                                    @Html.ActionLink("Login", "Login", "Account", new { @class = "nav-link" })
-                                                </li>
-                                            }
-
-
-                                        </ul>
-                                    </nav>
-                                </div>
-                                <!-- Header-btn -->
-
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
-        </div>
-        <!-- Header End -->
-    </header>
-    <main>
-        <div class="page-wrapper ">
-            <!-- ============================================================== -->
-            <!-- Bread crumb and right sidebar toggle -->
-            <!-- ============================================================== -->
-            @*<div class="page-breadcrumb">
-                    <div class="row">
-                        <div class="col-5 align-self-center">
-                            <h4 class="page-title" style="padding-top:100px; margin-left:20px">Profile</h4>
-                        </div>
-                    </div>
-                </div>*@
-            <!-- ============================================================== -->
-            <!-- End Bread crumb and right sidebar toggle -->
-            <!-- ============================================================== -->
-            <!-- ============================================================== -->
-            <!-- Container fluid  -->
-            <!-- ============================================================== -->
-            <div class="container-fluid">
-                <!-- ============================================================== -->
-                <!-- Start Page Content -->
-                <!-- ============================================================== -->
-                <!-- Row -->
-                <div class="row">
-                    <!-- Column -->
-                    <div class="col-lg-4 col-xlg-3 col-md-5">
-                        <div class="card">
-                            <div class="card-body">
-                                <center class="m-t-30">
+            <!-- #User Info -->
+            <!-- Menu -->
+            <div class="menu">
+                <ul class="list">
 
-                                    <img src="~/Content/anonim-foto.png" class="rounded-circle" width="150" />
-                                    <h4 class="card-title m-t-10">@Model.Name </h4>
-                                    <h6 class="card-subtitle">@Model.Email</h6>
+                    @if (User.Identity.IsAuthenticated)
 
-                                </center>
+                    {
+
+                        <li class="header">Home Page</li>
+                        <li class="active">
+                            <a href="/Account/Index/@Model.SeekerId">
+                                <i class="material-icons">home</i>
+                                <span>Home</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/User/CompanyProfile/@Model.SeekerId">
+                                <i class="material-icons">person</i> <span>Profile</span>
+                            </a>
+                        </li>
+
+
+                        <li>
+                            <a href="/User/JobAdversiments/@Model.SeekerId">
+                                <i class="material-icons">assignment</i> <span>Job Adversiments</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="/User/Create/@Model.SeekerId">
+                                <i class="material-icons">add </i> <span>  Create Job</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="@Url.Action("SignOut","Account")">
+                                <i class="material-icons">close  </i> <span> Sign Out</span>
+                            </a>
+                        </li>
+                    }
+
+                </ul>>
+            </div>
+
+
+
+            <!-- #Footer -->
+        </aside>
+        <!-- #END# Left Sidebar -->
+        <!-- Right Sidebar -->
+        <!-- #END# Right Sidebar -->
+    </section>
+    <section class="content">
+        <div class="container-fluid">
+            <div class="block-header">
+                <h2>USER</h2>
+            </div>
+            <main>
+                <div class="page-wrapper ">
+                    <!-- ============================================================== -->
+                    <!-- Bread crumb and right sidebar toggle -->
+                    <!-- ============================================================== -->
+                    @*<div class="page-breadcrumb">
+                            <div class="row">
+                                <div class="col-5 align-self-center">
+                                    <h4 class="page-title" style="padding-top:100px; margin-left:20px">Profile</h4>
+                                </div>
                             </div>
-                            <div>
-                                <hr>
-                            </div>
-
-                        </div>
-                    </div>
-
-                    <div class="col-lg-8 col-xlg-9 col-md-7">
-                        <div class="card">
-                            <div class="card-body">
-                                @using (Html.BeginForm())
-                                {
-                                    @Html.AntiForgeryToken()
-
-                                    <div class="form-horizontal">
-                                        <h4>User</h4>
-                                        <hr />
-                                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                                        @Html.HiddenFor(model => model.SeekerId)
-
-                                        <div class="form-group">
-                                            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-                                            <div class="col-md-10">
-                                                @Html.TextBoxFor(model => model.Name, new { @class = "form-control", @readonly = "readonly" })
-                                                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            @Html.LabelFor(model => model.Phone, htmlAttributes: new { @class = "control-label col-md-2" })
-                                            <div class="col-md-10">
-                                                @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control" } })
-                                                @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
-                                            </div>
-                                        </div>
+                        </div>*@
+                    <!-- ============================================================== -->
+                    <!-- End Bread crumb and right sidebar toggle -->
+                    <!-- ============================================================== -->
+                    <!-- ============================================================== -->
+                    <!-- Container fluid  -->
+                    <!-- ============================================================== -->
+                    <div class="container-fluid">
+                        <!-- ============================================================== -->
+                        <!-- Start Page Content -->
+                        <!-- ============================================================== -->
+                        <!-- Row -->
+                        <div class="row">
+                            <!-- Column -->
 
 
+                            <div class="col-lg-12 col-xlg-14 col-md-14" >
+                                <div class="card">
+                                    <div class="card-body">
+                                        @using (Html.BeginForm())
+                                        {
+                                            @Html.AntiForgeryToken()
 
-                                        <div class="form-group">
-                                            @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-2" })
-                                            <div class="col-md-10">
-                                                @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
-                                                @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
-                                            </div>
-                                        </div>
+                                            <div class="form-horizontal"style="height:800px;">
+                                           
+                                                <hr />
+                                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                                @Html.HiddenFor(model => model.SeekerId)
 
-                                        <div class="form-group">
-                                            @Html.LabelFor(model => model.Website, htmlAttributes: new { @class = "control-label col-md-2" })
-                                            <div class="col-md-10">
-                                                @Html.EditorFor(model => model.Website, new { htmlAttributes = new { @class = "form-control" } })
-                                                @Html.ValidationMessageFor(model => model.Website, "", new { @class = "text-danger" })
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            @Html.LabelFor(model => model.ContactMail, htmlAttributes: new { @class = "control-label col-md-2" })
-                                            <div class="col-md-10">
-                                                @Html.EditorFor(model => model.ContactMail, new { htmlAttributes = new { @class = "form-control" } })
-                                                @Html.ValidationMessageFor(model => model.ContactMail, "", new { @class = "text-danger" })
-                                            </div>
-                                        </div>
-
-                                        @*<div class="form-group">
-                                                @Html.LabelFor(model => model.CountryId, "CountryId", htmlAttributes: new { @class = "control-label col-md-2" })
-                                                <div class="col-md-10">
-                                                    @Html.DropDownList("CountryId", null, htmlAttributes: new { @class = "form-control" })
-                                                    @Html.ValidationMessageFor(model => model.CountryId, "", new { @class = "text-danger" })
+                                                <div class="form-group" style="padding:10px; font-size:20px">
+                                                    @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                                                    <div class="col-md-10" style="font-size: 20px">
+                                                        @Html.TextBoxFor(model => model.Name, new { @class = "form-control", @readonly = "readonly" })
+                                                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                                                    </div>
                                                 </div>
-                                            </div>*@
 
-                                        @*<div class="form-group">
-                                                @Html.LabelFor(model => model.TypeofProfessionId, "TypeofProfessionId", htmlAttributes: new { @class = "control-label col-md-2" })
-                                                <div class="col-md-10">
-                                                    @Html.DropDownList("TypeofProfessionId", null, htmlAttributes: new { @class = "form-control" })
-                                                    @Html.ValidationMessageFor(model => model.TypeofProfessionId, "", new { @class = "text-danger" })
+                                                <div class="form-group" style="padding:10px; font-size:20px">
+                                                    @Html.LabelFor(model => model.Phone, htmlAttributes: new { @class = "control-label col-md-2" })
+                                                    <div class="col-md-10"style="font-size: 20px">
+                                                        @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control" } })
+                                                        @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+                                                    </div>
                                                 </div>
-                                            </div>*@
 
-                                        <div class="form-group">
-                                            @Html.LabelFor(model => model.Username, htmlAttributes: new { @class = "control-label col-md-2" })
-                                            <div class="col-md-10">
-                                                @Html.TextBoxFor(model => model.Username, new { @class = "form-control", @readonly = "readonly" })
 
+
+                                                <div class="form-group" style="padding:10px; font-size:20px">
+                                                    @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-2" })
+                                                    <div class="col-md-10"style="font-size: 20px">
+                                                        @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
+                                                        @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group" style="padding:10px; font-size:20px">
+                                                    @Html.LabelFor(model => model.Website, htmlAttributes: new { @class = "control-label col-md-2" })
+                                                    <div class="col-md-10"style="font-size: 20px">
+                                                        @Html.EditorFor(model => model.Website, new { htmlAttributes = new { @class = "form-control" } })
+                                                        @Html.ValidationMessageFor(model => model.Website, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group" style="padding:10px; font-size:20px">
+                                                    @Html.LabelFor(model => model.ContactMail, htmlAttributes: new { @class = "control-label col-md-2" })
+                                                    <div class="col-md-10"style="font-size: 20px">
+                                                        @Html.EditorFor(model => model.ContactMail, new { htmlAttributes = new { @class = "form-control" } })
+                                                        @Html.ValidationMessageFor(model => model.ContactMail, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+
+                                                @*<div class="form-group">
+                                                        @Html.LabelFor(model => model.CountryId, "CountryId", htmlAttributes: new { @class = "control-label col-md-2" })
+                                                        <div class="col-md-10">
+                                                            @Html.DropDownList("CountryId", null, htmlAttributes: new { @class = "form-control" })
+                                                            @Html.ValidationMessageFor(model => model.CountryId, "", new { @class = "text-danger" })
+                                                        </div>
+                                                    </div>*@
+
+                                                @*<div class="form-group">
+                                                        @Html.LabelFor(model => model.TypeofProfessionId, "TypeofProfessionId", htmlAttributes: new { @class = "control-label col-md-2" })
+                                                        <div class="col-md-10">
+                                                            @Html.DropDownList("TypeofProfessionId", null, htmlAttributes: new { @class = "form-control" })
+                                                            @Html.ValidationMessageFor(model => model.TypeofProfessionId, "", new { @class = "text-danger" })
+                                                        </div>
+                                                    </div>*@
+
+                                                <div class="form-group" style="padding:10px; font-size:20px">
+                                                    @Html.LabelFor(model => model.Username, htmlAttributes: new { @class = "control-label col-md-2" })
+                                                    <div class="col-md-10"style="font-size: 20px">
+                                                        @Html.TextBoxFor(model => model.Username, new { @class = "form-control", @readonly = "readonly" })
+
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group" style="padding:10px; font-size:20px">
+                                                    @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+                                                    <div class="col-md-10">
+                                                        @Html.PasswordFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                                                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group" style="padding:10px; font-size:20px">
+                                                    @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+                                                    <div class="col-md-10"style="font-size: 20px">
+                                                        @Html.TextBoxFor(model => model.Email, new { @class = "form-control", @readonly = "readonly" })
+
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group" style="padding:10px; font-size:20px">
+                                                    @Html.LabelFor(model => model.AccountType, htmlAttributes: new { @class = "control-label col-md-2" })
+                                                    <div class="col-md-10"style="font-size: 20px">
+                                                        @Html.TextBoxFor(model => model.AccountType, new { @class = "form-control", @readonly = "readonly" })
+
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group" style="padding:10px; font-size:20px">
+                                                    <div class="col-md-offset-2 col-md-10">
+                                                        <input type="submit" value="Save" class="btn btn-default" />
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
+                                        }
 
-                                        <div class="form-group">
-                                            @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
-                                            <div class="col-md-10">
-                                                @Html.PasswordFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
-                                                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
-                                            <div class="col-md-10">
-                                                @Html.TextBoxFor(model => model.Email, new { @class = "form-control", @readonly = "readonly" })
-
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            @Html.LabelFor(model => model.AccountType, htmlAttributes: new { @class = "control-label col-md-2" })
-                                            <div class="col-md-10">
-                                                @Html.TextBoxFor(model => model.AccountType, new { @class = "form-control", @readonly = "readonly" })
-
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <div class="col-md-offset-2 col-md-10">
-                                                <input type="submit" value="Save" class="btn btn-default" />
-                                            </div>
-                                        </div>
+                                    <div style=" text-align: right;" >
+                                        <button type="button" class="btn btn-danger waves-effect"  >
+                                           <a href="/Account/Index/@Model.SeekerId" <i class="material-icons">home</i> </a>
+                                            <span>HOME</span>
+                                        </button>
+                                      
                                     </div>
-                                }
 
-                                <div>
-                                    @Html.ActionLink("Back to List", "Index")
+                                    </div>
                                 </div>
-
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
 
-        </div>
-    </main>
+                </div>
+               
+            </main>
+            </div>
+</section>
+            <!-- Jquery Core Js -->
+            <script src="~/admin/plugins/jquery/jquery.min.js"></script>
+
+            <!-- Bootstrap Core Js -->
+            <script src="~/admin/plugins/bootstrap/js/bootstrap.js"></script>
+
+            <!-- Select Plugin Js -->
+            <script src="~/admin/plugins/bootstrap-select/js/bootstrap-select.js"></script>
+
+            <!-- Slimscroll Plugin Js -->
+            <script src="~/admin/plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
+
+            <!-- Waves Effect Plugin Js -->
+            <script src="~/admin/plugins/node-waves/waves.js"></script>
+
+            <!-- Jquery CountTo Plugin Js -->
+            <script src="~/admin/plugins/jquery-countto/jquery.countTo.js"></script>
+
+            <!-- Morris Plugin Js -->
+            <script src="~/admin/plugins/raphael/raphael.min.js"></script>
+            <script src="~/admin/plugins/morrisjs/morris.js"></script>
+
+            <!-- ChartJs -->
+            <script src="~/admin/plugins/chartjs/Chart.bundle.js"></script>
+
+            <!-- Flot Charts Plugin Js -->
+            <script src="~/admin/plugins/flot-charts/jquery.flot.js"></script>
+            <script src="~/admin/plugins/flot-charts/jquery.flot.resize.js"></script>
+            <script src="~/admin/plugins/flot-charts/jquery.flot.pie.js"></script>
+            <script src="~/admin/plugins/flot-charts/jquery.flot.categories.js"></script>
+            <script src="~/admin/plugins/flot-charts/jquery.flot.time.js"></script>
+
+            <!-- Sparkline Chart Plugin Js -->
+            <script src="~/admin/plugins/jquery-sparkline/jquery.sparkline.js"></script>
+
+            <!-- Custom Js -->
+            <script src="~/admin/js/admin.js"></script>
+            <script src="~/admin/js/pages/index.js"></script>
+
+            <!-- Demo Js -->
+            <script src="~/admin/js/demo.js"></script>
 </body>
+
 </html>

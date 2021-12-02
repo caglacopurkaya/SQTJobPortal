@@ -1,120 +1,284 @@
-﻿@model SQTJobPortal.Models.Job
-
+﻿@model SQTJobPortal.Models.ViewModel
 @{
     Layout = null;
 }
 
+
+@using Microsoft.AspNet.Identity
+
 <!DOCTYPE html>
-
 <html>
+
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>CreateJob</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <title>Welcome To Company Index</title>
+    <!-- Favicon-->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link href="~/admin/css/clicker.css" rel="stylesheet" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
+
+    <!-- Bootstrap Core Css -->
+    <link href="~/admin/plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+    <!-- Waves Effect Css -->
+    <link href="~/admin/plugins/node-waves/waves.css" rel="stylesheet" />
+
+    <!-- Animation Css -->
+    <link href="~/admin/plugins/animate-css/animate.css" rel="stylesheet" />
+
+    <!-- Morris Chart Css-->
+    <link href="~/admin/plugins/morrisjs/morris.css" rel="stylesheet" />
+
+    <!-- Custom Css -->
+    <link href="~/admin/css/style.css" rel="stylesheet">
+
+    <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
+    <link href="~/admin/css/themes/all-themes.css" rel="stylesheet" />
+
+
 </head>
-<body>
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
 
-        <div class="form-horizontal">
-            <h4>Job</h4>
-            <hr />
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            <div class="form-group">
-                @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.Experience, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Experience, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Experience, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.PostedDate, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.PostedDate, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.PostedDate, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.DueToApply, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.DueToApply, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.DueToApply, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.Salary, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Salary, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Salary, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.JobType, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.JobType, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.JobType, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.CategoryId, "CategoryId", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.DropDownList("CategoryId", null, htmlAttributes: new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.ProfessionId, "ProfessionId", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.DropDownList("ProfessionId", null, htmlAttributes: new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.ProfessionId, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-           
-
-            @*<div class="form-group">
-                @Html.LabelFor(model => model.IsActive, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    <div class="checkbox">
-                        @Html.EditorFor(model => model.IsActive)
-                        @Html.ValidationMessageFor(model => model.IsActive, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-            </div>*@
-
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Create" class="btn btn-default" />
-                </div>
-            </div>
+<body class="theme-red">
+    <!-- Page Loader -->
+    <!-- #END# Page Loader -->
+    <!-- Overlay For Sidebars -->
+    <div class="overlay"></div>
+    <!-- #END# Overlay For Sidebars -->
+    <!-- Search Bar -->
+    <div class="search-bar">
+        <div class="search-icon">
+            <i class="material-icons">search</i>
         </div>
-    }
-
-    <div>
-        @Html.ActionLink("Back to List", "Index")
+        <input type="text" placeholder="START TYPING...">
+        <div class="close-search">
+            <i class="material-icons">close</i>
+        </div>
     </div>
+    <!-- #END# Search Bar -->
+    <!-- Top Bar -->
+    <nav class="navbar">
+        <div class="container-fluid">
+
+        </div>
+    </nav>
+    <!-- #Top Bar -->
+    <section>
+        <!-- Left Sidebar -->
+        <aside id="leftsidebar" class="sidebar">
+            <!-- User Info -->
+            <div class="user-info">
+                <div class="image">
+                    <img src="~/Content/anonim-foto.png" width="48" height="48" alt="User" />
+
+                </div>
+                <div class="info-container">
+                    <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Welcome  @(User.Identity.IsAuthenticated ? HttpContext.Current.User.Identity.Name:"Guest") !</div>
+                    <div class="email">@Model.companies.Email</div>
+
+                </div>
+            </div>
+            <!-- #User Info -->
+            <!-- Menu -->
+            <div class="menu">
+                <ul class="list">
+
+                    @if (User.Identity.IsAuthenticated)
+
+                    {
+
+                        <li class="header">Home Page</li>
+                        <li class="active">
+                            <a href="/Account/Index/@Model.companies.SeekerId">
+                                <i class="material-icons">home</i>
+                                <span>Home</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/User/CompanyProfile/@Model.companies.SeekerId">
+                                <i class="material-icons">person</i> <span>Profile</span>
+                            </a>
+                        </li>
+
+
+                        <li>
+                            <a href="/User/JobAdversiments/@Model.companies.SeekerId">
+                                <i class="material-icons">assignment</i> <span>Job Adversiments</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="/User/Create/@Model.companies.SeekerId">
+                                <i class="material-icons">add </i> <span>  Create Job</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="@Url.Action("SignOut","Account")">
+                                <i class="material-icons">close  </i> <span> Sign Out</span>
+                            </a>
+                        </li>
+                    }
+
+                </ul>>
+            </div>
+
+
+
+            <!-- #Footer -->
+        </aside>
+        <!-- #END# Left Sidebar -->
+        <!-- Right Sidebar -->
+        <!-- #END# Right Sidebar -->
+    </section>
+
+    <section>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal" style="margin-left:100px; margin-top:50px">
+                <h1>Simple Job Application Form</h1>
+                <hr />
+             
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group" style="margin-top:20px">
+                        @Html.LabelFor(model => model.jobs.Title, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.jobs.Title, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.jobs.Title, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+                    <div class="form-group"style="margin-top:20px">
+                        @Html.LabelFor(model => model.jobs.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.jobs.Description, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.jobs.Description, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group"style="margin-top:20px">
+                        @Html.LabelFor(model => model.jobs.Experience, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.jobs.Experience, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.jobs.Experience, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group"style="margin-top:20px">
+                        @Html.LabelFor(model => model.jobs.PostedDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.jobs.PostedDate, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.jobs.PostedDate, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group"style="margin-top:20px">
+                        @Html.LabelFor(model => model.jobs.DueToApply, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.jobs.DueToApply, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.jobs.DueToApply, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group"style="margin-top:20px">
+                        @Html.LabelFor(model => model.jobs.Salary, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.jobs.Salary, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.jobs.Salary, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group"style="margin-top:20px">
+                        @Html.LabelFor(model => model.jobs.JobType, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.jobs.JobType, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.jobs.JobType, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group"style="margin-top:30px">
+                        @Html.LabelFor(model => model.jobs.CategoryId, "CategoryId", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownList("CategoryId", null, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.jobs.CategoryId, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group"style="margin-top:70px">
+                        @Html.LabelFor(model => model.jobs.ProfessionId, "ProfessionId", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownList("ProfessionId", null, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.jobs.ProfessionId, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+
+
+                    @*<div class="form-group">
+                            @Html.LabelFor(model => model.IsActive, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                <div class="checkbox">
+                                    @Html.EditorFor(model => model.IsActive)
+                                    @Html.ValidationMessageFor(model => model.IsActive, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>*@
+
+                    <div class="form-group" style="text-align:right; ">
+                        <div class="col-md-offset-4 col-md-10">
+                            <input type="submit" value="Create" class="btn btn-default" />
+                        </div>
+                    </div>
+            </div>}
+
+        <div>
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+
+    </section>
+
+
+<!-- Jquery Core Js -->
+<!-- Jquery Core Js -->
+<script src="~/admin/plugins/jquery/jquery.min.js"></script>
+
+<!-- Bootstrap Core Js -->
+<script src="~/admin/plugins/bootstrap/js/bootstrap.js"></script>
+
+<!-- Select Plugin Js -->
+<script src="~/admin/plugins/bootstrap-select/js/bootstrap-select.js"></script>
+
+<!-- Slimscroll Plugin Js -->
+<script src="~/admin/plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
+
+<!-- Waves Effect Plugin Js -->
+<script src="~/admin/plugins/node-waves/waves.js"></script>
+
+<!-- Jquery DataTable Plugin Js -->
+<script src="~/admin/plugins/jquery-datatable/jquery.dataTables.js"></script>
+<script src="~/admin/plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
+<script src="~/admin/plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js"></script>
+<script src="~/admin/plugins/jquery-datatable/extensions/export/buttons.flash.min.js"></script>
+<script src="~/admin/plugins/jquery-datatable/extensions/export/jszip.min.js"></script>
+<script src="~/admin/plugins/jquery-datatable/extensions/export/pdfmake.min.js"></script>
+<script src="~/admin/plugins/jquery-datatable/extensions/export/vfs_fonts.js"></script>
+<script src="~/admin/plugins/jquery-datatable/extensions/export/buttons.html5.min.js"></script>
+<script src="~/admin/plugins/jquery-datatable/extensions/export/buttons.print.min.js"></script>
+
+<!-- Custom Js -->
+<script src="~/admin/js/admin.js"></script>
+<script src="~/admin/js/pages/tables/jquery-datatable.js"></script>
+
+<!-- Demo Js -->
+<script src="~/admin/js/demo.js"></script>
 </body>
+
 </html>
