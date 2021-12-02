@@ -64,6 +64,36 @@ namespace SQTJobPortal.Controllers
         }
 
 
+        [Authorize(Roles = "Company")]
+
+        public ActionResult Requests()
+        {
+
+           
+            var testTable = from c in db.User
+                            join jc in db.Job on c.SeekerId equals jc.UserId
+                            join req in db.JobRequest on jc.JobId equals req.JobId
+                            join user in db.User on req.JobSeekerId equals user.SeekerId
+                     
+                            select new ViewModel
+                            {
+                                companies = c,
+                                jobs = jc,
+                                request = req,
+                                user = user,
+                           
+
+
+                            };
+            ViewData["TestTable"] = testTable;
+         
+
+            User company = new User();
+            company.SeekerId = CompanyHelper.id;
+            return View(company);
+        }
+
+
         [Authorize(Roles = "Company,JobSeeker")]
         public ActionResult Details(int? id)
         {

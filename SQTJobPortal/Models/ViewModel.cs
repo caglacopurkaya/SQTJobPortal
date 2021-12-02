@@ -15,5 +15,8 @@ namespace SQTJobPortal.Models
         public JobRequest request { get; set; }
 
 
+        public User user { get; set; }
+
+
     }
 }

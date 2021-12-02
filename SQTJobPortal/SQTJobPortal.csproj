@@ -275,8 +275,13 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\js\request1.js" />
+    <Content Include="Content\js\request2.js" />
+    <Content Include="Content\js\request3.js" />
     <Content Include="Content\login.css" />
     <Content Include="Content\Profile.css" />
+    <Content Include="Content\request2.css" />
+    <Content Include="Content\requests.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -586,7 +591,6 @@
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\SignUp.cshtml" />
     <Content Include="Views\Account\Index.cshtml" />
@@ -594,6 +598,7 @@
     <Content Include="Views\User\CompanyProfile.cshtml" />
     <Content Include="Views\User\Create.cshtml" />
     <Content Include="Views\User\_CategoryList.cshtml" />
+    <Content Include="Views\User\Requests.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
