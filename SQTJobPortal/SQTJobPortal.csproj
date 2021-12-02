@@ -4269,7 +4269,6 @@
     <Content Include="Views\User\_CategoryList.cshtml" />
     <Content Include="Views\User\Requests.cshtml" />
     <Content Include="Views\User\JobAdversiments.cshtml" />
-    <Content Include="Views\bosilinecek.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
