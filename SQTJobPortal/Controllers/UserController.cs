@@ -110,33 +110,52 @@ namespace SQTJobPortal.Controllers
         }
 
         [Authorize(Roles = "Company")]
+        [HttpGet]
         public ActionResult Create(int id)
         {
-            var model = new ViewModel();
+            var model = new ViewModel2();
+          
             model.companies= db.User.FirstOrDefault(x => x.SeekerId == id);
+            CompanyHelper.id = model.companies.SeekerId;
             ViewBag.CategoryId = new SelectList(db.Category, "CategoryId", "CategoryName");
             ViewBag.ProfessionId = new SelectList(db.Professions, "ProfessionId", "ProfessionName");
+
             return View(model);
         }
 
         [Authorize(Roles = "Company")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(ViewModel viewModel)
+        public ActionResult Create(ViewModel3 viewModel)
         {
-            var findUserId = db.User.FirstOrDefault(x => x.SeekerId == viewModel.companies.SeekerId);
-            if (ModelState.IsValid && viewModel.jobs.PostedDate >= DateTime.Now)
-            {
+               
+             
+                ViewBag.CategoryId = new SelectList(db.Category, "CategoryId", "CategoryName", viewModel.CategoryId);
+                ViewBag.ProfessionId = new SelectList(db.Professions, "ProfessionId", "ProfessionName", viewModel.ProfessionId);
+                //if (findCategoryId!=null && findProfessionId!=null)
+                //{
                 Job jobs = new Job();
-                jobs.UserId = CompanyHelper.id;
-                db.Job.Add(jobs);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            ViewBag.CategoryId = new SelectList(db.Category, "CategoryId", "CategoryName", viewModel.jobs.CategoryId);
-            ViewBag.ProfessionId = new SelectList(db.Professions, "ProfessionId", "ProfessionName", viewModel.jobs.ProfessionId);
+                    jobs.UserId = CompanyHelper.id;
+                    jobs.Title = viewModel.Title;
+                    jobs.Description = viewModel.Description;
+                    jobs.Experience = viewModel.Experience;
+                    jobs.PostedDate = viewModel.PostedDate;
+                    jobs.DueToApply = viewModel.DueToApply;
+                    jobs.Salary = viewModel.Salary;
+                    jobs.CategoryId = viewModel.CategoryId;
+                    jobs.ProfessionId = viewModel.ProfessionId;
+               
+
+
+                    db.Job.Add(jobs);
+                    db.SaveChanges();
+                    TempData["success"] = "Your job is succesfully created!";
+
+                    return RedirectToAction("Index","Account", viewModel);
+              
+                
           
-            return RedirectToAction("Index","Account", findUserId.SeekerId);
+           
         }
 
         [Authorize(Roles = "Company")]

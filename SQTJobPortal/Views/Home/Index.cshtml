@@ -42,7 +42,7 @@
                         <div class="col-lg-3 col-md-2">
                             <!-- Logo -->
                             <div class="logo">
-                                <a href="index.html"><img src="~/site/assets/img/logo/logo.png" alt=""></a>
+                                <a href="index.html"><img src="~/site/assets/img/logo/logo.png" alt="" style="max-width:300px; max-height:200px"></a>
                             </div>
                         </div>
                         <div class="col-lg-9 col-md-9">
@@ -51,26 +51,28 @@
                                 <div class="main-menu">
                                     <nav class="d-none d-lg-block">
                                         <ul id="navigation">
-                                           
-                                                <li class="nav-item">
-                                                    @Html.ActionLink("Home Page", "Index", "Home", new { @class = "nav-link" })
-                                                </li>
-                                                <li class="nav-item">
-                                                    @Html.ActionLink("Jobs", "JobList", "Home", new { @class = "nav-link" })
-                                                </li>
-                                                <li class="nav-item">
-                                                    @Html.ActionLink("Find Your Dream Job", "", "Account", new { @class = "nav-link" })
-                                                </li>
-                                                <li class="nav-item">
-                                                    @Html.ActionLink("Contact", "Contact", "Home", new { @class = "nav-link" })
-                                                </li>
+
+                                            <li class="nav-item">
+                                                @Html.ActionLink("Home Page", "Index", "Home", new { @class = "nav-link" })
+                                            </li>
+                                            <li class="nav-item">
+                                                @Html.ActionLink("Jobs", "JobList", "Home", new { @class = "nav-link" })
+                                            </li>
+                                            <li class="nav-item">
+                                                @Html.ActionLink("Find Your Dream Job", "", "Account", new { @class = "nav-link" })
+                                            </li>
+                                            <li class="nav-item">
+                                                @Html.ActionLink("Contact", "Contact", "Home", new { @class = "nav-link" })
+                                            </li>
 
 
-                                                <li class="nav-item">
-                                                   <a href="/Account/Login">Login</a> 
-                                                </li>
+                                            <div class="header-btn d-none f-right d-lg-block" style="margin-left:250px; margin-top:18px">
 
+                                                <input type="button" class="btn head-btn1" onclick="window.location.href='/Account/Login'" name="" value="Login">
                                             
+                                            </div>
+
+
                                         </ul>
                                        
                                     </nav>
@@ -105,7 +107,7 @@
                         </div>
                     </div>
                 </div>
-                @*@Html.Action("_FeaturedCategoryList", "Home")*@
+                @Html.Action("_CategoryList", "User")
             </div>
         </div>
         @*Our Services End

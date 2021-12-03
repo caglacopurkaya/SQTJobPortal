@@ -1,4 +1,4 @@
-﻿@model SQTJobPortal.Models.ViewModel
+﻿@model SQTJobPortal.Models.ViewModel2
 @{
     Layout = null;
 }
@@ -13,7 +13,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <title>Welcome To Company Index</title>
+    <title>JOB ADVERSITEMENT</title>
     <!-- Favicon-->
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link href="~/admin/css/clicker.css" rel="stylesheet" />
@@ -142,150 +142,294 @@
         <!-- #END# Right Sidebar -->
     </section>
 
-    <section>
+    <section class="content">
+        <div class="container-fluid">
+            <div class="block-header">
+                <h2>
+                    CREATE JOB
+                    <small>with your dreams</small>
+                </h2>
+            </div>
+            <!-- Input -->
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="header">
+                            <h2>
+                                Simple Job Application Form
 
-        @using (Html.BeginForm())
-        {
-            @Html.AntiForgeryToken()
-
-            <div class="form-horizontal" style="margin-left:100px; margin-top:50px">
-                <h1>Simple Job Application Form</h1>
-                <hr />
-             
-                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                    <div class="form-group" style="margin-top:20px">
-                        @Html.LabelFor(model => model.jobs.Title, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.jobs.Title, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.jobs.Title, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
+                            </h2>
+                            <h3 style="color:red">@TempData["fail"]</h3>
+                            <div class="body">
 
 
-                    <div class="form-group"style="margin-top:20px">
-                        @Html.LabelFor(model => model.jobs.Description, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.jobs.Description, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.jobs.Description, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
+                                @using (Html.BeginForm("Create", "User", FormMethod.Post, new { @class = "form-horizontal" }))
+                                {
+                                    @Html.AntiForgeryToken()
+                                <div class="form-horizontal">
+                                    @Html.ValidationSummary(true)
+                                    <h2 class="card-inside-title">COMPANY NAME</h2>
+                                    <div class="row clearfix">
+                                        <div class="col-sm-12">
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <input type="text" class="form-control" name="Name" value="@Model.companies.Name" placeholder="Please enter the title" readonly="readonly" />
+                                                </div>
+                                            </div>
 
-                    <div class="form-group"style="margin-top:20px">
-                        @Html.LabelFor(model => model.jobs.Experience, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.jobs.Experience, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.jobs.Experience, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
+                                        </div>
+                                    </div>
+                                    <h2 class="card-inside-title">JOB TITLE</h2>
+                                    <div class="row clearfix">
+                                        <div class="col-sm-12">
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <input type="text" class="form-control" name="Title" id="Title" placeholder="Please enter the title" />
+                                                </div>
+                                            </div>
 
-                    <div class="form-group"style="margin-top:20px">
-                        @Html.LabelFor(model => model.jobs.PostedDate, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.jobs.PostedDate, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.jobs.PostedDate, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-
-                    <div class="form-group"style="margin-top:20px">
-                        @Html.LabelFor(model => model.jobs.DueToApply, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.jobs.DueToApply, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.jobs.DueToApply, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-
-                    <div class="form-group"style="margin-top:20px">
-                        @Html.LabelFor(model => model.jobs.Salary, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.jobs.Salary, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.jobs.Salary, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-
-                    <div class="form-group"style="margin-top:20px">
-                        @Html.LabelFor(model => model.jobs.JobType, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.jobs.JobType, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.jobs.JobType, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-
-                    <div class="form-group"style="margin-top:30px">
-                        @Html.LabelFor(model => model.jobs.CategoryId, "CategoryId", htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.DropDownList("CategoryId", null, htmlAttributes: new { @class = "form-control" })
-                            @Html.ValidationMessageFor(model => model.jobs.CategoryId, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-
-                    <div class="form-group"style="margin-top:70px">
-                        @Html.LabelFor(model => model.jobs.ProfessionId, "ProfessionId", htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.DropDownList("ProfessionId", null, htmlAttributes: new { @class = "form-control" })
-                            @Html.ValidationMessageFor(model => model.jobs.ProfessionId, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
+                                        </div>
+                                    </div>
 
 
 
 
-                    @*<div class="form-group">
-                            @Html.LabelFor(model => model.IsActive, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                <div class="checkbox">
-                                    @Html.EditorFor(model => model.IsActive)
-                                    @Html.ValidationMessageFor(model => model.IsActive, "", new { @class = "text-danger" })
+                                    <div class="row clearfix">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <div class="card">
+                                                <div class="header">
+                                                    <h2>Description</h2>
+
+                                                </div>
+                                                <div class="body">
+                                                    <h2 class="card-inside-title">Basic Example</h2>
+                                                    <div class="row clearfix">
+                                                        <div class="col-sm-12">
+                                                            <div class="form-group">
+                                                                <div class="form-line">
+                                                                    <textarea rows="4" class="form-control no-resize" name="Description" id="Description" placeholder="Please type the description for job..."></textarea>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+                                    <h2 class="card-inside-title">EXPERIENCES</h2>
+                                    <div class="row clearfix">
+                                        <div class="col-sm-12">
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <input type="text" class="form-control" name="Experience" id="Experience" placeholder="Please enter experience year" />
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+
+
+
+
+                                    <div class="row clearfix">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <div class="card">
+                                                <div class="header">
+                                                    <h2>
+                                                        APPLY  DATE
+
+                                                    </h2>
+
+                                                </div>
+                                                <div class="body">
+                                                    <div class="row clearfix">
+                                                        <div class="col-xs-12">
+                                                            <h2 class="card-inside-title">START DATE</h2>
+                                                            <div class="form-group">
+                                                                <div class="form-line" id="bs_datepicker_container">
+                                                                    <input type="text" class="form-control" name="PostedDate" id="PostedDate" placeholder="Please choose a date for begin...">
+                                                                </div>
+                                                            </div>
+                                                            <span class="input-group-addon">
+                                                                <i class="material-icons">date_range</i>
+                                                            </span>
+                                                        </div>
+
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row clearfix">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <div class="card">
+                                                <div class="header">
+                                                    <h2>
+                                                        DUE  DATE
+
+                                                    </h2>
+
+                                                </div>
+                                                <div class="body">
+                                                    <div class="row clearfix">
+
+
+                                                        <div class="col-xs-12">
+                                                            <h2 class="card-inside-title">DUE DATE</h2>
+                                                            <div class="form-group">
+                                                                <div class="form-line" id="bs_datepicker_container">
+                                                                    <input type="text" class="form-control" name="DueToApply" id="DueToApply" placeholder="Please choose a date for end...">
+                                                                </div>
+                                                            </div>
+                                                            <span class="input-group-addon">
+                                                                <i class="material-icons">date_range</i>
+                                                            </span>
+                                                        </div>
+
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <h2 class="card-inside-title">SALARY & JOB TYPE</h2>
+                                    <div class="row clearfix">
+                                        <div class="col-sm-12">
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <input type="text" class="form-control" name="Salary" id="Salary" placeholder="Enter the salary" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    
+                                    </div>
+                                    <div class="row clearfix">
+                                        
+                                        <div class="col-sm-12">
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <input type="text" class="form-control" name="JobType" id="JobType" placeholder="Enter the Job Type" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="row clearfix">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <div class="card">
+                                                <div class="header">
+                                                    <h2>
+                                                        SELECT CATEGORY & PROFESSION
+
+                                                    </h2>
+
+                                                </div>
+                                                <div class="body">
+                                                    <div class="row clearfix">
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group">
+
+                                                                <div class="col-md-10">
+
+                                                                    <div class="col-md-10">
+                                                                        @Html.DropDownList("CategoryId", null, htmlAttributes: new { @class = "form-control" })
+                                                                        @Html.ValidationMessageFor(model => model.jobs.CategoryId, "", new { @class = "text-danger" })
+                                                                    </div>
+
+
+
+
+
+
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group">
+
+                                                                <div class="col-md-10">
+                                                                    <fieldset>
+                                                               
+
+                                                                        <div class="col-md-10">
+                                                                            @Html.DropDownList("ProfessionId", null, htmlAttributes: new { @class = "form-control" })
+                                                                            @Html.ValidationMessageFor(model => model.jobs.ProfessionId, "", new { @class = "text-danger" })
+                                                                        </div>
+                                                                    </fieldset>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    @Html.HiddenFor(x => x.users.SeekerId)
+                                    <div class="form-group">
+
+                                        @*<input type="submit" value="Create" class="btn btn-default" />*@
+                                        <input type="submit" value="CREATE" class="btn btn-danger waves-effect" style="width:100%" />
+
+                                    </div>
+
+
                                 </div>
-                            </div>
-                        </div>*@
 
-                    <div class="form-group" style="text-align:right; ">
-                        <div class="col-md-offset-4 col-md-10">
-                            <input type="submit" value="Create" class="btn btn-default" />
+                                }
+
+                                   
+                            </div>
+
+                                
                         </div>
                     </div>
-            </div>}
+                </div>
 
-        <div>
-            @Html.ActionLink("Back to List", "Index")
+            </div>
         </div>
-
     </section>
 
+    <!-- Jquery Core Js -->
+    <script src="~/admin/plugins/jquery/jquery.min.js"></script>
 
-<!-- Jquery Core Js -->
-<!-- Jquery Core Js -->
-<script src="~/admin/plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap Core Js -->
+    <script src="~/admin/plugins/bootstrap/js/bootstrap.js"></script>
 
-<!-- Bootstrap Core Js -->
-<script src="~/admin/plugins/bootstrap/js/bootstrap.js"></script>
+    <!-- Select Plugin Js -->
+    <script src="~/admin/plugins/bootstrap-select/js/bootstrap-select.js"></script>
 
-<!-- Select Plugin Js -->
-<script src="~/admin/plugins/bootstrap-select/js/bootstrap-select.js"></script>
+    <!-- Slimscroll Plugin Js -->
+    <script src="~/admin/plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
 
-<!-- Slimscroll Plugin Js -->
-<script src="~/admin/plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
+    <!-- Waves Effect Plugin Js -->
+    <script src="~/admin/plugins/node-waves/waves.js"></script>
 
-<!-- Waves Effect Plugin Js -->
-<script src="~/admin/plugins/node-waves/waves.js"></script>
+    <!-- Autosize Plugin Js -->
+    <script src="~/admin/plugins/autosize/autosize.js"></script>
 
-<!-- Jquery DataTable Plugin Js -->
-<script src="~/admin/plugins/jquery-datatable/jquery.dataTables.js"></script>
-<script src="~/admin/plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
-<script src="~/admin/plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js"></script>
-<script src="~/admin/plugins/jquery-datatable/extensions/export/buttons.flash.min.js"></script>
-<script src="~/admin/plugins/jquery-datatable/extensions/export/jszip.min.js"></script>
-<script src="~/admin/plugins/jquery-datatable/extensions/export/pdfmake.min.js"></script>
-<script src="~/admin/plugins/jquery-datatable/extensions/export/vfs_fonts.js"></script>
-<script src="~/admin/plugins/jquery-datatable/extensions/export/buttons.html5.min.js"></script>
-<script src="~/admin/plugins/jquery-datatable/extensions/export/buttons.print.min.js"></script>
+    <!-- Moment Plugin Js -->
+    <script src="~/admin/plugins/momentjs/moment.js"></script>
 
-<!-- Custom Js -->
-<script src="~/admin/js/admin.js"></script>
-<script src="~/admin/js/pages/tables/jquery-datatable.js"></script>
+    <!-- Bootstrap Material Datetime Picker Plugin Js -->
+    <script src="~/admin/plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
 
-<!-- Demo Js -->
-<script src="~/admin/js/demo.js"></script>
-</body>
+    <!-- Bootstrap Datepicker Plugin Js -->
+    <script src="~/admin/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
 
-</html>
+    <!-- Custom Js -->
+    <script src="~/admin/js/admin.js"></script>
+    <script src="~/admin/js/pages/forms/basic-form-elements.js"></script>
+
+    <!-- Demo Js -->
+    <script src="~/admin/js/demo.js"></script>
