@@ -19,11 +19,7 @@ namespace SQTJobPortal.Controllers
             return View();  
         }
 
-        public ActionResult Indexx()
-        {
-            return View();
-        }
-
+ 
         [HttpGet]
         public ActionResult Contact()
         {
@@ -43,12 +39,12 @@ namespace SQTJobPortal.Controllers
             {
                 MailMessage message = new MailMessage();
                 SmtpClient client = new SmtpClient();
-                client.Credentials = new System.Net.NetworkCredential("mediagnosis@hotmail.com", "caglacopurkaya1999");
+                client.Credentials = new System.Net.NetworkCredential("dreamjobopportunities@hotmail.com", "caglacopurkaya1999");
                 client.Port = 587;
                 client.Host = "smtp.live.com";
                 client.EnableSsl = true;
                 message.To.Add(p1.Email);
-                message.From = new MailAddress("mediagnosis@hotmail.com");
+                message.From = new MailAddress("dreamjobopportunities@hotmail.com");
                 message.Subject = "Contact Process";
                 message.Body = "Dear" + " " + p1.Name + " " + "your mail has been succesfully sended." + "We will get back to you shortly. See you soon! " + "Dream Job";
 

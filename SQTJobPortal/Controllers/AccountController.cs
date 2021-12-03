@@ -81,7 +81,51 @@ namespace SQTJobPortal.Controllers
     
         }
 
-       
+        public ActionResult Register()
+        {
+            return View(new User());
+        }
+
+        [HttpPost]
+        public ActionResult Register(User model)
+        {
+            if (!ModelState.IsValid)
+            {
+
+                return View("Register");
+
+            }
+            if (ModelState.IsValid)
+            {
+                User user = new User();
+                var SeekerControl = db.User.FirstOrDefault(x => x.Username == model.Username || x.Email == model.Email );
+                if (SeekerControl != null)
+                {
+                    ViewBag.Message2 = "There is an account with this email or Username please log in your account";
+                    return View("Login");
+                }
+                else
+                {
+
+
+                    user.Name = model.Name;
+                    user.Username= model.Username;
+                    user.Email = model.Email;
+                    user.Password = model.Password;
+                    user.AccountType = model.AccountType;
+
+
+                    db.User.Add(user);
+                    db.SaveChanges();
+                    TempData["signup"] = "Your account succesfully created. Please Log in!";
+                    return RedirectToAction("Login", "Account");
+                }
+            }
+
+            else
+            { ModelState.AddModelError("RegisterUserError", "Register User Error!"); }
+            return View(model);
+        }
 
         [Authorize]
         

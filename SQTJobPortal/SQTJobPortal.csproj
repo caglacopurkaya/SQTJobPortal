@@ -431,8 +431,6 @@
     <Content Include="admin\pages\examples\blank.html" />
     <Content Include="admin\pages\examples\forgot-password.html" />
     <Content Include="admin\pages\examples\profile.html" />
-    <Content Include="admin\pages\examples\sign-in.html" />
-    <Content Include="admin\pages\examples\sign-up.html" />
     <Content Include="admin\pages\forms\advanced-form-elements.html" />
     <Content Include="admin\pages\forms\basic-form-elements.html" />
     <Content Include="admin\pages\forms\editors.html" />
@@ -3889,6 +3887,7 @@
     <Content Include="site\assets\img\team\3.png" />
     <Content Include="site\assets\img\testmonial\1.png" />
     <Content Include="site\assets\img\testmonial\testimonial-founder.png" />
+    <Content Include="site\assets\img\service\together.jpg" />
     <Content Include="site\assets\js\animated.headline.js" />
     <Content Include="site\assets\js\bootstrap.min.js" />
     <Content Include="site\assets\js\contact.js" />
@@ -4261,14 +4260,15 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Views\Account\SignUp.cshtml" />
     <Content Include="Views\Account\Index.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\User\CompanyProfile.cshtml" />
     <Content Include="Views\User\Create.cshtml" />
     <Content Include="Views\User\_CategoryList.cshtml" />
     <Content Include="Views\User\Requests.cshtml" />
     <Content Include="Views\User\JobAdversiments.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\User\RequestEdit.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

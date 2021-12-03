@@ -49,13 +49,13 @@ namespace SQTJobPortal.Controllers
         [Authorize(Roles = "Company")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CompanyProfile([Bind(Include = "SeekerId,Name,Website,Phone,ContactMail,Address,CountryId,TypeOfProfessionId")] User user)
+        public ActionResult CompanyProfile([Bind(Include = "SeekerId,Name,Username,Password,Email,AccountType,Website,Phone,ContactMail,Address,CountryId,TypeOfProfessionId")] User user)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(user).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("CompanyProfile");
             }
             ViewBag.CountryId = new SelectList(db.Category, "CountryId", "CountryName", user.CountryId);
             ViewBag.TypeOfProfessionId = new SelectList(db.Professions, "TypeOfProfessionId", "TypeOfProfessionName", user.TypeofProfessionId);
@@ -235,6 +235,40 @@ namespace SQTJobPortal.Controllers
 
             return View(company);
            
+        }
+        [Authorize(Roles = "Company")]
+        public ActionResult RequestEdit(int id)
+        {
+            var infocomp = db.JobRequest.FirstOrDefault(x => x.RequestId == id);
+
+            return View(infocomp);
+        }
+
+
+      
+
+        [Authorize(Roles = "Company")]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult RequestEdit(JobRequest req)
+        {
+            var reqToUpdate = db.JobRequest.Find(req.RequestId);
+            if (reqToUpdate == null)
+            {
+                return HttpNotFound();
+            }
+            else
+            {
+
+               
+                    reqToUpdate.IsActive = req.IsActive;
+                    db.SaveChanges();
+                    ViewBag.UpdatedMessage = "Status Updated Succesfully!";
+                    return View("Requests", reqToUpdate);
+               
+              
+
+            }
         }
 
 

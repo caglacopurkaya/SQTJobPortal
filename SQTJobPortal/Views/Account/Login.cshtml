@@ -4,58 +4,139 @@
     Layout = null;
 }
 
-<h2>Login</h2>
 
 
-<div class="container py-5">
-    <div class="card rounded-0">
-        <div class="card-header">
-            <h3 class="mb-0">Login</h3>
-        </div>
-        <div class="card-body">
-            @using (Html.BeginForm("Login","Account",new { returnUrl= Request.QueryString["ReturnUrl"] }, FormMethod.Post))
-            {
-                @Html.AntiForgeryToken()
-            <div class="form-horizontal">
-                @Html.ValidationSummary(true)
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Username)
-                    @Html.TextBoxFor(model => model.Username, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.Username)
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Password)
-                    @Html.PasswordFor(model => model.Password, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.Password)
-                </div>
+<html>
 
-                <div class="form-group">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <title>Sign In | Dream Job</title>
+    <!-- Favicon-->
+   
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
+
+    <!-- Bootstrap Core Css -->
+    <link href="~/admin/plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+    <!-- Waves Effect Css -->
+    <link href="~/admin/plugins/node-waves/waves.css" rel="stylesheet" />
+
+    <!-- Animation Css -->
+    <link href="~/admin/plugins/animate-css/animate.css" rel="stylesheet" />
+
+    <!-- Custom Css -->
+    <link href="~/admin/css/style.css" rel="stylesheet">
+
+</head>
+
+<body class="login-page">
+ 
+  
+        <!-- Header Start -->
+   
+        <!-- Header End -->
+   
+        <div class="login-box">
+        
+            <div class="logo">
+                <a href="javascript:void(0);">DREAM<b>JOB</b></a>
+                <small>Oppurtunities</small>
+            </div>
+            <div class="card">
+                <div class="body">
+                    @using (Html.BeginForm("Login", "Account", new { returnUrl = Request.QueryString["ReturnUrl"] }, FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+                    <div class="form-horizontal">
+                        @Html.ValidationSummary(true)
+                        <div class="msg">Sign in to start your session</div>
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="material-icons">person</i>
+                            </span>
+                            <div class="form-line">
+                                <input type="text" class="form-control" name="Username" placeholder="Username" required autofocus>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="material-icons">lock</i>
+                            </span>
+                            <div class="form-line">
+                                <input type="password" class="form-control" name="Password" placeholder="Password" required>
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="material-icons">supervisor_account</i>
+                            </span>
+
+                            <fieldset>
+                                Account Type
+                                <select id="AccountType" name="AccountType">
+
+                                    <option value=""></option>
+                                    <option value="Company">Company</option>
+
+                                    <option selected="selected" value="JobSeeker">Job Seeker</option>
 
 
 
-                    <fieldset>
-                        Account Type
-                        <select id="AccountType" name="AccountType">
+                                </select>
 
-                            <option value=""></option>
+                            </fieldset>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-8 p-t-5">
+                                <input type="checkbox" name="rememberme" id="rememberme" class="filled-in chk-col-pink">
+                                <label for="rememberme">Remember Me</label>
+                            </div>
+                            <div class="col-xs-4">
+                                <button class="btn btn-block bg-pink waves-effect" type="submit">SIGN IN</button>
+                            </div>
+                        </div>
+                        <div class="row m-t-15 m-b--20">
+                            <div class="col-xs-6">
+                                <a href="~/Account/Register">Register Now!</a>
+                            </div>
+                            <div class="col-xs-6">
+                                <a href="~/Home/Index">Go Back to Home Page!</a>
+                            </div>
 
-                            <option value="0">Company</option>
-
-                            <option selected="selected" value="1">Job Seeker</option>
-
-
-                        </select>
-
-                    </fieldset>
-                    @Html.ValidationMessageFor(model => model.AccountType)
-                </div>
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                <button type="submit" class="btn btn-primary float-right rounded-0">Login</button>
-                <div>
-                    @Html.ActionLink("Click here to SignUp", "Signup")
+                        </div>
+                       
+                    </div>
+                    }
                 </div>
             </div>
-            }
         </div>
-    </div>
-</div>
+    <!-- JS here -->
+    <!-- All JS Custom Plugins Link Here here -->
+ 
+
+    <!-- Jquery Plugins, main Jquery -->
+    <script src="./site/assets/js/plugins.js"></script>
+    <script src="./site/assets/js/main.js"></script>
+    <!-- Jquery Core Js -->
+    <script src="~/admin/plugins/jquery/jquery.min.js"></script>
+
+    <!-- Bootstrap Core Js -->
+    <script src="~/admin/plugins/bootstrap/js/bootstrap.js"></script>
+
+    <!-- Waves Effect Plugin Js -->
+    <script src="~/admin/plugins/node-waves/waves.js"></script>
+
+    <!-- Validation Plugin Js -->
+    <script src="~/admin/plugins/jquery-validation/jquery.validate.js"></script>
+
+    <!-- Custom Js -->
+    <script src="~/admin/js/admin.js"></script>
+    <script src="~/admin/js/pages/examples/sign-in.js"></script>
+</body>
+
+</html>
