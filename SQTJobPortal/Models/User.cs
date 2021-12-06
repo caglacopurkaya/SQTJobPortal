@@ -17,9 +17,9 @@ namespace SQTJobPortal.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public User()
         {
+            this.Job = new HashSet<Job>();
             this.JobSeekerSkills = new HashSet<JobSeekerSkills>();
             this.JobRequest = new HashSet<JobRequest>();
-            this.Job = new HashSet<Job>();
         }
     
         public int SeekerId { get; set; }
@@ -35,17 +35,16 @@ namespace SQTJobPortal.Models
         public Nullable<int> TypeofProfessionId { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
-        public string confirm { get; set; }
         public string Email { get; set; }
         public string AccountType { get; set; }
     
         public virtual Country Country { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Job> Job { get; set; }
         public virtual TypeofProfession TypeofProfession { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<JobSeekerSkills> JobSeekerSkills { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<JobRequest> JobRequest { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Job> Job { get; set; }
     }
 }

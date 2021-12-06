@@ -44,83 +44,83 @@
                 @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal" }))
                 {
                     @Html.AntiForgeryToken()
-                <div class="form-horizontal">
-                    @Html.ValidationSummary(true)
-                    <div class="msg">Register a new membership</div>
-                    <div class="input-group">
-                        <span class="input-group-addon">
-                            <i class="material-icons">person</i>
-                        </span>
-                        <div class="form-line">
-                            <input type="text" class="form-control" name="Name" placeholder="Name" required autofocus>
+                    <div class="form-horizontal">
+                        @Html.ValidationSummary(true)
+                        <div class="msg">Register a new membership</div>
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="material-icons">person</i>
+                            </span>
+                            <div class="form-line">
+                                <input type="text" class="form-control" name="Name" placeholder="Name" required autofocus>
+                            </div>
                         </div>
-                    </div>
-                    <div class="input-group">
-                        <span class="input-group-addon">
-                            <i class="material-icons">assistant</i>
-                        </span>
-                        <div class="form-line">
-                            <input type="text" class="form-control" name="Username" placeholder="Username" required autofocus>
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="material-icons">assistant</i>
+                            </span>
+                            <div class="form-line">
+                                <input type="text" class="form-control" name="Username" placeholder="Username" required autofocus>
+                            </div>
                         </div>
-                    </div>
-                    <div class="input-group">
-                        <span class="input-group-addon">
-                            <i class="material-icons">email</i>
-                        </span>
-                        <div class="form-line">
-                            <input type="email" class="form-control" name="Email" placeholder="Email Address" required>
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="material-icons">email</i>
+                            </span>
+                            <div class="form-line">
+                                <input type="email" class="form-control" name="Email" placeholder="Email Address" required>
+                            </div>
                         </div>
-                    </div>
-                    <div class="input-group">
-                        <span class="input-group-addon">
-                            <i class="material-icons">lock</i>
-                        </span>
-                        <div class="form-line">
-                            <input type="password" class="form-control" name="Password" minlength="6" placeholder="Password" required>
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="material-icons">lock</i>
+                            </span>
+                            <div class="form-line">
+                                <input type="password" class="form-control" name="Password" minlength="6" placeholder="Password" required>
+                            </div>
                         </div>
-                    </div>
-                    <div class="input-group">
-                        <span class="input-group-addon">
-                            <i class="material-icons">lock</i>
-                        </span>
-                        <div class="form-line">
-                            <input type="password" class="form-control" name="confirm" minlength="6" placeholder="Confirm Password" required>
+                        @*<div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="material-icons">lock</i>
+                            </span>
+                            <div class="form-line">
+                                <input type="password" class="form-control" name="confirm" minlength="6" placeholder="Confirm Password" required>
+                            </div>
+                        </div>*@
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="material-icons">supervisor_account</i>
+                            </span>
+
+                            <fieldset>
+                                Account Type
+                                <select id="AccountType" name="AccountType">
+
+                                    <option value=""></option>
+
+                                    <option value="Company">Company</option>
+
+                                    <option selected="selected" value="JobSeeker">Job Seeker</option>
+
+
+                                </select>
+
+                            </fieldset>
                         </div>
+
+
+                        <button class="btn btn-block btn-lg bg-pink waves-effect" type="submit">SIGN UP</button>
+
+                        <div class="m-t-25 m-b--5 align-center">
+                            <a href="~/Account/Login">You already have a membership?</a>
+                        </div>
+
                     </div>
-                    <div class="input-group">
-                        <span class="input-group-addon">
-                            <i class="material-icons">supervisor_account</i>
-                        </span>
-
-                        <fieldset>
-                            Account Type
-                            <select id="AccountType" name="AccountType">
-
-                                
-
-                                <option value="Company">Company</option>
-
-                                <option selected="selected" value="JobSeeker">Job Seeker</option>
-
-
-                            </select>
-
-                        </fieldset>
-                    </div>
-
-
-                    <button class="btn btn-block btn-lg bg-pink waves-effect" type="submit">SIGN UP</button>
-
-                    <div class="m-t-25 m-b--5 align-center">
-                        <a href="~/Account/Login">You already have a membership?</a>
-                    </div>
-
-                </div>
                 }
 
             </div>
         </div>
-     </div>
+    </div>
 
     <!-- Jquery Core Js -->
     <script src="~/admin/plugins/jquery/jquery.min.js"></script>

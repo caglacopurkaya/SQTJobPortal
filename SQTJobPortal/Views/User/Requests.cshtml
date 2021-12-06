@@ -182,16 +182,20 @@
 
                                             <td><a href="#"><img src="~/Content/anonim-foto.png" style="max-width:50px; max-height:50px;" class="avatar" alt="Avatar"></a></td>
                                             <td>
-                                                @if ( viewModel.request.User.SeekerId ==viewModel.request.JobSeekerId)
+                                                @if (viewModel.request.User.SeekerId == viewModel.request.JobSeekerId)
                                                 {@viewModel.request.User.Name}
                                             </td>
-                                            @if (Convert.ToInt32(viewModel.request.IsActive) == 0)
+                                            @if (viewModel.request.IsActive==null)
                                             {
-                                                <td><span class="status text-danger">&bull;</span>@viewModel.request.IsActive Cancelled</td>
+                                                <td><span class="status text-black">&bull;</span>@viewModel.request.IsActive Waiting Response</td>
+                                            }
+                                            else if (Convert.ToInt32(viewModel.request.IsActive) == 0)
+                                            {
+                                            <td><span class="status text-danger">&bull;</span>@viewModel.request.IsActive Cancelled</td>
                                             }
                                             else
                                             {
-                                                <td><span class="status text-success">&bull;</span>@viewModel.request.IsActive Accepted</td>
+                                            <td><span class="status text-success">&bull;</span>@viewModel.request.IsActive Accepted</td>
                                             }
 
                                             <td> @viewModel.request.Profession </td>
@@ -207,7 +211,7 @@
                                                 <div class="hiddendiv">@viewModel.request.MotivationLetter</div>
                                             </td>
                                             <td> @String.Format("{0:dd/MM/yyyy}", viewModel.request.ApplyDate)</td>
-                                            <td><a href="/User/RequestEdit" class="view" title="View Details" data-toggle="tooltip"><i class="material-icons">&#xE5C8;</i></a></td>
+                                            <td><a href="/User/RequestEdit/@viewModel.request.RequestId" class="view" title="View Details" data-toggle="tooltip"><i class="material-icons">&#xE5C8;</i></a></td>
                                         </tr>
                                             
                                         }

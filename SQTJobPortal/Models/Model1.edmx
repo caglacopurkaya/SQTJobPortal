@@ -47,8 +47,6 @@
           <Property Name="UserId" Type="int" />
           <Property Name="IsActive" Type="bit" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'SQTJobPortal.dbo.JobRequest' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="JobRequest">
           <Key>
             <PropertyRef Name="RequestId" />
@@ -127,7 +125,7 @@ warning 6002: The table/view 'SQTJobPortal.dbo.JobSkills' does not have a primar
           <Property Name="Email" Type="nvarchar" MaxLength="150" />
           <Property Name="AccountType" Type="nvarchar" MaxLength="50" />
         </EntityType>
-        <Association Name="FK__Job__CategoryId__47DBAE45">
+        <Association Name="FK__Job__CategoryId__3A81B327">
           <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
           <End Role="Job" Type="Self.Job" Multiplicity="*" />
           <ReferentialConstraint>
@@ -139,7 +137,7 @@ warning 6002: The table/view 'SQTJobPortal.dbo.JobSkills' does not have a primar
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__JobSeeker__JobSe__4BAC3F29">
+        <Association Name="FK__JobSeeker__JobSe__3F466844">
           <End Role="User" Type="Self.User" Multiplicity="0..1" />
           <End Role="JobSeekerSkills" Type="Self.JobSeekerSkills" Multiplicity="*" />
           <ReferentialConstraint>
@@ -151,7 +149,7 @@ warning 6002: The table/view 'SQTJobPortal.dbo.JobSkills' does not have a primar
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__JobSeeker__Skill__4CA06362">
+        <Association Name="FK__JobSeeker__Skill__403A8C7D">
           <End Role="Skills" Type="Self.Skills" Multiplicity="0..1" />
           <End Role="JobSeekerSkills" Type="Self.JobSeekerSkills" Multiplicity="*" />
           <ReferentialConstraint>
@@ -163,7 +161,7 @@ warning 6002: The table/view 'SQTJobPortal.dbo.JobSkills' does not have a primar
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__JobSkills__JobId__5BE2A6F2">
+        <Association Name="FK__JobSkills__JobId__412EB0B6">
           <End Role="Job" Type="Self.Job" Multiplicity="0..1" />
           <End Role="JobSkills" Type="Self.JobSkills" Multiplicity="*" />
           <ReferentialConstraint>
@@ -175,7 +173,7 @@ warning 6002: The table/view 'SQTJobPortal.dbo.JobSkills' does not have a primar
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__JobSkills__Skill__5CD6CB2B">
+        <Association Name="FK__JobSkills__Skill__4222D4EF">
           <End Role="Skills" Type="Self.Skills" Multiplicity="0..1" />
           <End Role="JobSkills" Type="Self.JobSkills" Multiplicity="*" />
           <ReferentialConstraint>
@@ -259,62 +257,16 @@ warning 6002: The table/view 'SQTJobPortal.dbo.JobSkills' does not have a primar
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
-        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-          <Parameter Name="version" Type="int" Mode="In" />
-          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
-        </Function>
-        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-          <Parameter Name="version" Type="int" Mode="In" />
-          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
-        </Function>
-        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-        </Function>
-        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-        </Function>
-        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-        </Function>
-        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
-        </Function>
-        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="SQTJobPortalModelStoreContainer">
           <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Contact" EntityType="Self.Contact" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Country" EntityType="Self.Country" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Job" EntityType="Self.Job" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="JobRequest" EntityType="Self.JobRequest" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Professions" EntityType="Self.Professions" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Skills" EntityType="Self.Skills" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TypeofProfession" EntityType="Self.TypeofProfession" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="JobRequest" EntityType="Self.JobRequest" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [JobRequest].[RequestId] AS [RequestId], 
-    [JobRequest].[Phone] AS [Phone], 
-    [JobRequest].[Email] AS [Email], 
-    [JobRequest].[Profession] AS [Profession], 
-    [JobRequest].[Education] AS [Education], 
-    [JobRequest].[MotivationLetter] AS [MotivationLetter], 
-    [JobRequest].[CvName] AS [CvName], 
-    [JobRequest].[FileContent] AS [FileContent], 
-    [JobRequest].[JobId] AS [JobId], 
-    [JobRequest].[JobSeekerId] AS [JobSeekerId], 
-    [JobRequest].[IsActive] AS [IsActive], 
-    [JobRequest].[ApplyDate] AS [ApplyDate]
-    FROM [dbo].[JobRequest] AS [JobRequest]</DefiningQuery>
-          </EntitySet>
           <EntitySet Name="JobSeekerSkills" EntityType="Self.JobSeekerSkills" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [JobSeekerSkills].[JobSeekerId] AS [JobSeekerId], 
@@ -329,23 +281,23 @@ warning 6002: The table/view 'SQTJobPortal.dbo.JobSkills' does not have a primar
     [JobSkills].[JS] AS [JS]
     FROM [dbo].[JobSkills] AS [JobSkills]</DefiningQuery>
           </EntitySet>
-          <AssociationSet Name="FK__Job__CategoryId__47DBAE45" Association="Self.FK__Job__CategoryId__47DBAE45">
+          <AssociationSet Name="FK__Job__CategoryId__3A81B327" Association="Self.FK__Job__CategoryId__3A81B327">
             <End Role="Category" EntitySet="Category" />
             <End Role="Job" EntitySet="Job" />
           </AssociationSet>
-          <AssociationSet Name="FK__JobSeeker__JobSe__4BAC3F29" Association="Self.FK__JobSeeker__JobSe__4BAC3F29">
+          <AssociationSet Name="FK__JobSeeker__JobSe__3F466844" Association="Self.FK__JobSeeker__JobSe__3F466844">
             <End Role="User" EntitySet="User" />
             <End Role="JobSeekerSkills" EntitySet="JobSeekerSkills" />
           </AssociationSet>
-          <AssociationSet Name="FK__JobSeeker__Skill__4CA06362" Association="Self.FK__JobSeeker__Skill__4CA06362">
+          <AssociationSet Name="FK__JobSeeker__Skill__403A8C7D" Association="Self.FK__JobSeeker__Skill__403A8C7D">
             <End Role="Skills" EntitySet="Skills" />
             <End Role="JobSeekerSkills" EntitySet="JobSeekerSkills" />
           </AssociationSet>
-          <AssociationSet Name="FK__JobSkills__JobId__5BE2A6F2" Association="Self.FK__JobSkills__JobId__5BE2A6F2">
+          <AssociationSet Name="FK__JobSkills__JobId__412EB0B6" Association="Self.FK__JobSkills__JobId__412EB0B6">
             <End Role="Job" EntitySet="Job" />
             <End Role="JobSkills" EntitySet="JobSkills" />
           </AssociationSet>
-          <AssociationSet Name="FK__JobSkills__Skill__5CD6CB2B" Association="Self.FK__JobSkills__Skill__5CD6CB2B">
+          <AssociationSet Name="FK__JobSkills__Skill__4222D4EF" Association="Self.FK__JobSkills__Skill__4222D4EF">
             <End Role="Skills" EntitySet="Skills" />
             <End Role="JobSkills" EntitySet="JobSkills" />
           </AssociationSet>
@@ -384,7 +336,7 @@ warning 6002: The table/view 'SQTJobPortal.dbo.JobSkills' does not have a primar
           </Key>
           <Property Name="CategoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CategoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Job" Relationship="Self.FK__Job__CategoryId__47DBAE45" FromRole="Category" ToRole="Job" />
+          <NavigationProperty Name="Job" Relationship="Self.FK__Job__CategoryId__3A81B327" FromRole="Category" ToRole="Job" />
         </EntityType>
         <EntityType Name="Contact">
           <Key>
@@ -420,12 +372,12 @@ warning 6002: The table/view 'SQTJobPortal.dbo.JobSkills' does not have a primar
           <Property Name="CategoryId" Type="Int32" />
           <Property Name="ProfessionId" Type="Int32" />
           <Property Name="UserId" Type="Int32" />
-          <NavigationProperty Name="Category" Relationship="Self.FK__Job__CategoryId__47DBAE45" FromRole="Job" ToRole="Category" />
-          <NavigationProperty Name="JobSkills" Relationship="Self.FK__JobSkills__JobId__5BE2A6F2" FromRole="Job" ToRole="JobSkills" />
-          <NavigationProperty Name="Professions" Relationship="Self.FK_Job_Professions" FromRole="Job" ToRole="Professions" />
-          <NavigationProperty Name="JobRequest" Relationship="Self.FK_JobRequest_Job" FromRole="Job" ToRole="JobRequest" />
-          <NavigationProperty Name="User" Relationship="SQTJobPortalModel.FK_Job_User" FromRole="Job" ToRole="User" />
           <Property Name="IsActive" Type="Boolean" />
+          <NavigationProperty Name="Category" Relationship="Self.FK__Job__CategoryId__3A81B327" FromRole="Job" ToRole="Category" />
+          <NavigationProperty Name="JobSkills" Relationship="Self.FK__JobSkills__JobId__412EB0B6" FromRole="Job" ToRole="JobSkills" />
+          <NavigationProperty Name="Professions" Relationship="Self.FK_Job_Professions" FromRole="Job" ToRole="Professions" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Job_User" FromRole="Job" ToRole="User" />
+          <NavigationProperty Name="JobRequest" Relationship="Self.FK_JobRequest_Job" FromRole="Job" ToRole="JobRequest" />
         </EntityType>
         <EntityType Name="Professions">
           <Key>
@@ -441,8 +393,8 @@ warning 6002: The table/view 'SQTJobPortal.dbo.JobSkills' does not have a primar
           </Key>
           <Property Name="SkillId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="SkillName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="JobSeekerSkills" Relationship="Self.FK__JobSeeker__Skill__4CA06362" FromRole="Skills" ToRole="JobSeekerSkills" />
-          <NavigationProperty Name="JobSkills" Relationship="Self.FK__JobSkills__Skill__5CD6CB2B" FromRole="Skills" ToRole="JobSkills" />
+          <NavigationProperty Name="JobSeekerSkills" Relationship="Self.FK__JobSeeker__Skill__403A8C7D" FromRole="Skills" ToRole="JobSeekerSkills" />
+          <NavigationProperty Name="JobSkills" Relationship="Self.FK__JobSkills__Skill__4222D4EF" FromRole="Skills" ToRole="JobSkills" />
         </EntityType>
         <EntityType Name="TypeofProfession">
           <Key>
@@ -467,15 +419,15 @@ warning 6002: The table/view 'SQTJobPortal.dbo.JobSkills' does not have a primar
           <Property Name="ContactMail" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="CountryId" Type="Int32" />
           <Property Name="TypeofProfessionId" Type="Int32" />
-          <NavigationProperty Name="Country" Relationship="Self.FK_User_Country" FromRole="User" ToRole="Country" />
-          <NavigationProperty Name="TypeofProfession" Relationship="Self.FK_User_TypeofProfession" FromRole="User" ToRole="TypeofProfession" />
-          <NavigationProperty Name="JobSeekerSkills" Relationship="Self.FK__JobSeeker__JobSe__4BAC3F29" FromRole="User" ToRole="JobSeekerSkills" />
-          <NavigationProperty Name="JobRequest" Relationship="Self.FK_JobRequest_User" FromRole="User" ToRole="JobRequest" />
-          <NavigationProperty Name="Job" Relationship="SQTJobPortalModel.FK_Job_User" FromRole="User" ToRole="Job" />
           <Property Name="Username" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Email" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="AccountType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Country" Relationship="Self.FK_User_Country" FromRole="User" ToRole="Country" />
+          <NavigationProperty Name="Job" Relationship="Self.FK_Job_User" FromRole="User" ToRole="Job" />
+          <NavigationProperty Name="TypeofProfession" Relationship="Self.FK_User_TypeofProfession" FromRole="User" ToRole="TypeofProfession" />
+          <NavigationProperty Name="JobSeekerSkills" Relationship="Self.FK__JobSeeker__JobSe__3F466844" FromRole="User" ToRole="JobSeekerSkills" />
+          <NavigationProperty Name="JobRequest" Relationship="Self.FK_JobRequest_User" FromRole="User" ToRole="JobRequest" />
         </EntityType>
         <EntityType Name="JobRequest">
           <Key>
@@ -491,10 +443,10 @@ warning 6002: The table/view 'SQTJobPortal.dbo.JobSkills' does not have a primar
           <Property Name="FileContent" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="JobId" Type="Int32" />
           <Property Name="JobSeekerId" Type="Int32" />
-          <NavigationProperty Name="Job" Relationship="Self.FK_JobRequest_Job" FromRole="JobRequest" ToRole="Job" />
-          <NavigationProperty Name="User" Relationship="Self.FK_JobRequest_User" FromRole="JobRequest" ToRole="User" />
           <Property Name="IsActive" Type="Boolean" />
           <Property Name="ApplyDate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Job" Relationship="Self.FK_JobRequest_Job" FromRole="JobRequest" ToRole="Job" />
+          <NavigationProperty Name="User" Relationship="Self.FK_JobRequest_User" FromRole="JobRequest" ToRole="User" />
         </EntityType>
         <EntityType Name="JobSeekerSkills">
           <Key>
@@ -503,8 +455,8 @@ warning 6002: The table/view 'SQTJobPortal.dbo.JobSkills' does not have a primar
           <Property Name="JobSeekerId" Type="Int32" />
           <Property Name="SkillId" Type="Int32" />
           <Property Name="JSS" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <NavigationProperty Name="Skills" Relationship="Self.FK__JobSeeker__Skill__4CA06362" FromRole="JobSeekerSkills" ToRole="Skills" />
-          <NavigationProperty Name="User" Relationship="Self.FK__JobSeeker__JobSe__4BAC3F29" FromRole="JobSeekerSkills" ToRole="User" />
+          <NavigationProperty Name="Skills" Relationship="Self.FK__JobSeeker__Skill__403A8C7D" FromRole="JobSeekerSkills" ToRole="Skills" />
+          <NavigationProperty Name="User" Relationship="Self.FK__JobSeeker__JobSe__3F466844" FromRole="JobSeekerSkills" ToRole="User" />
         </EntityType>
         <EntityType Name="JobSkills">
           <Key>
@@ -513,10 +465,10 @@ warning 6002: The table/view 'SQTJobPortal.dbo.JobSkills' does not have a primar
           <Property Name="JobId" Type="Int32" />
           <Property Name="SkillId" Type="Int32" />
           <Property Name="JS" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <NavigationProperty Name="Job" Relationship="Self.FK__JobSkills__JobId__5BE2A6F2" FromRole="JobSkills" ToRole="Job" />
-          <NavigationProperty Name="Skills" Relationship="Self.FK__JobSkills__Skill__5CD6CB2B" FromRole="JobSkills" ToRole="Skills" />
+          <NavigationProperty Name="Job" Relationship="Self.FK__JobSkills__JobId__412EB0B6" FromRole="JobSkills" ToRole="Job" />
+          <NavigationProperty Name="Skills" Relationship="Self.FK__JobSkills__Skill__4222D4EF" FromRole="JobSkills" ToRole="Skills" />
         </EntityType>
-        <Association Name="FK__Job__CategoryId__47DBAE45">
+        <Association Name="FK__Job__CategoryId__3A81B327">
           <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
           <End Role="Job" Type="Self.Job" Multiplicity="*" />
           <ReferentialConstraint>
@@ -540,7 +492,7 @@ warning 6002: The table/view 'SQTJobPortal.dbo.JobSkills' does not have a primar
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__JobSkills__JobId__5BE2A6F2">
+        <Association Name="FK__JobSkills__JobId__412EB0B6">
           <End Role="Job" Type="Self.Job" Multiplicity="0..1" />
           <End Role="JobSkills" Type="Self.JobSkills" Multiplicity="*" />
           <ReferentialConstraint>
@@ -564,6 +516,18 @@ warning 6002: The table/view 'SQTJobPortal.dbo.JobSkills' does not have a primar
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Job_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Job" Type="Self.Job" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="SeekerId" />
+            </Principal>
+            <Dependent Role="Job">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_JobRequest_Job">
           <End Role="Job" Type="Self.Job" Multiplicity="0..1" />
           <End Role="JobRequest" Type="Self.JobRequest" Multiplicity="*" />
@@ -576,7 +540,7 @@ warning 6002: The table/view 'SQTJobPortal.dbo.JobSkills' does not have a primar
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__JobSeeker__Skill__4CA06362">
+        <Association Name="FK__JobSeeker__Skill__403A8C7D">
           <End Role="Skills" Type="Self.Skills" Multiplicity="0..1" />
           <End Role="JobSeekerSkills" Type="Self.JobSeekerSkills" Multiplicity="*" />
           <ReferentialConstraint>
@@ -588,7 +552,7 @@ warning 6002: The table/view 'SQTJobPortal.dbo.JobSkills' does not have a primar
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__JobSkills__Skill__5CD6CB2B">
+        <Association Name="FK__JobSkills__Skill__4222D4EF">
           <End Role="Skills" Type="Self.Skills" Multiplicity="0..1" />
           <End Role="JobSkills" Type="Self.JobSkills" Multiplicity="*" />
           <ReferentialConstraint>
@@ -612,7 +576,7 @@ warning 6002: The table/view 'SQTJobPortal.dbo.JobSkills' does not have a primar
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__JobSeeker__JobSe__4BAC3F29">
+        <Association Name="FK__JobSeeker__JobSe__3F466844">
           <End Role="User" Type="Self.User" Multiplicity="0..1" />
           <End Role="JobSeekerSkills" Type="Self.JobSeekerSkills" Multiplicity="*" />
           <ReferentialConstraint>
@@ -648,7 +612,7 @@ warning 6002: The table/view 'SQTJobPortal.dbo.JobSkills' does not have a primar
           <EntitySet Name="JobRequest" EntityType="Self.JobRequest" />
           <EntitySet Name="JobSeekerSkills" EntityType="Self.JobSeekerSkills" />
           <EntitySet Name="JobSkills" EntityType="Self.JobSkills" />
-          <AssociationSet Name="FK__Job__CategoryId__47DBAE45" Association="Self.FK__Job__CategoryId__47DBAE45">
+          <AssociationSet Name="FK__Job__CategoryId__3A81B327" Association="Self.FK__Job__CategoryId__3A81B327">
             <End Role="Category" EntitySet="Category" />
             <End Role="Job" EntitySet="Job" />
           </AssociationSet>
@@ -656,7 +620,7 @@ warning 6002: The table/view 'SQTJobPortal.dbo.JobSkills' does not have a primar
             <End Role="Country" EntitySet="Country" />
             <End Role="User" EntitySet="User" />
           </AssociationSet>
-          <AssociationSet Name="FK__JobSkills__JobId__5BE2A6F2" Association="Self.FK__JobSkills__JobId__5BE2A6F2">
+          <AssociationSet Name="FK__JobSkills__JobId__412EB0B6" Association="Self.FK__JobSkills__JobId__412EB0B6">
             <End Role="Job" EntitySet="Job" />
             <End Role="JobSkills" EntitySet="JobSkills" />
           </AssociationSet>
@@ -664,15 +628,19 @@ warning 6002: The table/view 'SQTJobPortal.dbo.JobSkills' does not have a primar
             <End Role="Professions" EntitySet="Professions" />
             <End Role="Job" EntitySet="Job" />
           </AssociationSet>
+          <AssociationSet Name="FK_Job_User" Association="Self.FK_Job_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Job" EntitySet="Job" />
+          </AssociationSet>
           <AssociationSet Name="FK_JobRequest_Job" Association="Self.FK_JobRequest_Job">
             <End Role="Job" EntitySet="Job" />
             <End Role="JobRequest" EntitySet="JobRequest" />
           </AssociationSet>
-          <AssociationSet Name="FK__JobSeeker__Skill__4CA06362" Association="Self.FK__JobSeeker__Skill__4CA06362">
+          <AssociationSet Name="FK__JobSeeker__Skill__403A8C7D" Association="Self.FK__JobSeeker__Skill__403A8C7D">
             <End Role="Skills" EntitySet="Skills" />
             <End Role="JobSeekerSkills" EntitySet="JobSeekerSkills" />
           </AssociationSet>
-          <AssociationSet Name="FK__JobSkills__Skill__5CD6CB2B" Association="Self.FK__JobSkills__Skill__5CD6CB2B">
+          <AssociationSet Name="FK__JobSkills__Skill__4222D4EF" Association="Self.FK__JobSkills__Skill__4222D4EF">
             <End Role="Skills" EntitySet="Skills" />
             <End Role="JobSkills" EntitySet="JobSkills" />
           </AssociationSet>
@@ -680,7 +648,7 @@ warning 6002: The table/view 'SQTJobPortal.dbo.JobSkills' does not have a primar
             <End Role="TypeofProfession" EntitySet="TypeofProfession" />
             <End Role="User" EntitySet="User" />
           </AssociationSet>
-          <AssociationSet Name="FK__JobSeeker__JobSe__4BAC3F29" Association="Self.FK__JobSeeker__JobSe__4BAC3F29">
+          <AssociationSet Name="FK__JobSeeker__JobSe__3F466844" Association="Self.FK__JobSeeker__JobSe__3F466844">
             <End Role="User" EntitySet="User" />
             <End Role="JobSeekerSkills" EntitySet="JobSeekerSkills" />
           </AssociationSet>
@@ -688,64 +656,7 @@ warning 6002: The table/view 'SQTJobPortal.dbo.JobSkills' does not have a primar
             <End Role="User" EntitySet="User" />
             <End Role="JobRequest" EntitySet="JobRequest" />
           </AssociationSet>
-          <FunctionImport Name="sp_alterdiagram">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-            <Parameter Name="version" Mode="In" Type="Int32" />
-            <Parameter Name="definition" Mode="In" Type="Binary" />
-          </FunctionImport>
-          <FunctionImport Name="sp_creatediagram">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-            <Parameter Name="version" Mode="In" Type="Int32" />
-            <Parameter Name="definition" Mode="In" Type="Binary" />
-          </FunctionImport>
-          <FunctionImport Name="sp_dropdiagram">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(SQTJobPortalModel.sp_helpdiagramdefinition_Result)">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(SQTJobPortalModel.sp_helpdiagrams_Result)">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="sp_renamediagram">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-            <Parameter Name="new_diagramname" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="sp_upgraddiagrams" />
-          <AssociationSet Name="FK_Job_User" Association="SQTJobPortalModel.FK_Job_User">
-            <End Role="User" EntitySet="User" />
-            <End Role="Job" EntitySet="Job" />
-          </AssociationSet>
         </EntityContainer>
-        <ComplexType Name="sp_helpdiagramdefinition_Result">
-          <Property Type="Int32" Name="version" Nullable="true" />
-          <Property Type="Binary" Name="definition" Nullable="true" />
-        </ComplexType>
-        <ComplexType Name="sp_helpdiagrams_Result">
-          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
-          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
-          <Property Type="Int32" Name="ID" Nullable="false" />
-          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
-          <Property Type="Int32" Name="OwnerID" Nullable="false" />
-        </ComplexType>
-        <Association Name="FK_Job_User">
-          <End Type="SQTJobPortalModel.User" Role="User" Multiplicity="0..1" />
-          <End Type="SQTJobPortalModel.Job" Role="Job" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="SeekerId" />
-            </Principal>
-            <Dependent Role="Job">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -782,7 +693,6 @@ warning 6002: The table/view 'SQTJobPortal.dbo.JobSkills' does not have a primar
           <EntitySetMapping Name="Job">
             <EntityTypeMapping TypeName="SQTJobPortalModel.Job">
               <MappingFragment StoreEntitySet="Job">
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="JobId" ColumnName="JobId" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="CounterOfPost" ColumnName="CounterOfPost" />
@@ -795,6 +705,7 @@ warning 6002: The table/view 'SQTJobPortal.dbo.JobSkills' does not have a primar
                 <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
                 <ScalarProperty Name="ProfessionId" ColumnName="ProfessionId" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -825,10 +736,6 @@ warning 6002: The table/view 'SQTJobPortal.dbo.JobSkills' does not have a primar
           <EntitySetMapping Name="User">
             <EntityTypeMapping TypeName="SQTJobPortalModel.User">
               <MappingFragment StoreEntitySet="User">
-                <ScalarProperty Name="AccountType" ColumnName="AccountType" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="Username" ColumnName="Username" />
                 <ScalarProperty Name="SeekerId" ColumnName="SeekerId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Phone" ColumnName="Phone" />
@@ -840,14 +747,16 @@ warning 6002: The table/view 'SQTJobPortal.dbo.JobSkills' does not have a primar
                 <ScalarProperty Name="ContactMail" ColumnName="ContactMail" />
                 <ScalarProperty Name="CountryId" ColumnName="CountryId" />
                 <ScalarProperty Name="TypeofProfessionId" ColumnName="TypeofProfessionId" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="AccountType" ColumnName="AccountType" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="JobRequest">
             <EntityTypeMapping TypeName="SQTJobPortalModel.JobRequest">
               <MappingFragment StoreEntitySet="JobRequest">
-                <ScalarProperty Name="ApplyDate" ColumnName="ApplyDate" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="RequestId" ColumnName="RequestId" />
                 <ScalarProperty Name="Phone" ColumnName="Phone" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
@@ -858,6 +767,8 @@ warning 6002: The table/view 'SQTJobPortal.dbo.JobSkills' does not have a primar
                 <ScalarProperty Name="FileContent" ColumnName="FileContent" />
                 <ScalarProperty Name="JobId" ColumnName="JobId" />
                 <ScalarProperty Name="JobSeekerId" ColumnName="JobSeekerId" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ApplyDate" ColumnName="ApplyDate" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -879,30 +790,6 @@ warning 6002: The table/view 'SQTJobPortal.dbo.JobSkills' does not have a primar
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="SQTJobPortalModel.Store.sp_alterdiagram" />
-          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="SQTJobPortalModel.Store.sp_creatediagram" />
-          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="SQTJobPortalModel.Store.sp_dropdiagram" />
-          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="SQTJobPortalModel.Store.sp_helpdiagramdefinition">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="SQTJobPortalModel.sp_helpdiagramdefinition_Result">
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="definition" ColumnName="definition" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="SQTJobPortalModel.Store.sp_helpdiagrams">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="SQTJobPortalModel.sp_helpdiagrams_Result">
-                <ScalarProperty Name="Database" ColumnName="Database" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Owner" ColumnName="Owner" />
-                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="SQTJobPortalModel.Store.sp_renamediagram" />
-          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="SQTJobPortalModel.Store.sp_upgraddiagrams" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

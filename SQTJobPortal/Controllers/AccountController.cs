@@ -81,6 +81,7 @@ namespace SQTJobPortal.Controllers
     
         }
 
+
         public ActionResult Register()
         {
             return View(new User());
@@ -98,7 +99,7 @@ namespace SQTJobPortal.Controllers
             if (ModelState.IsValid)
             {
                 User user = new User();
-                var SeekerControl = db.User.FirstOrDefault(x => x.Username == model.Username || x.Email == model.Email );
+                var SeekerControl = db.User.FirstOrDefault(x => x.Username == model.Username || x.Email == model.Email);
                 if (SeekerControl != null)
                 {
                     ViewBag.Message2 = "There is an account with this email or Username please log in your account";
@@ -109,7 +110,7 @@ namespace SQTJobPortal.Controllers
 
 
                     user.Name = model.Name;
-                    user.Username= model.Username;
+                    user.Username = model.Username;
                     user.Email = model.Email;
                     user.Password = model.Password;
                     user.AccountType = model.AccountType;
@@ -137,23 +138,23 @@ namespace SQTJobPortal.Controllers
 
 
         
-        public ActionResult SignUp()
-        {
-            return View();
-        }
+        //public ActionResult SignUp()
+        //{
+        //    return View();
+        //}
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult SignUp(User user)
-        {
-            if (ModelState.IsValid)
-            {
-                db.User.Add(user);
-                db.SaveChanges();
-                return RedirectToAction("Login");
-            }
-            return View();
-        }
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult SignUp(User user)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        db.User.Add(user);
+        //        db.SaveChanges();
+        //        return RedirectToAction("Login");
+        //    }
+        //    return View();
+        //}
 
         public ActionResult Logout()
         {

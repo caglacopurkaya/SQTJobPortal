@@ -1,12 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400&display=swap');
-*{
+
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
 }
 
-html,body{
+html, body {
     display: grid;
     height: 100%;
     width: 100%;
@@ -14,7 +15,7 @@ html,body{
     background: linear-gradient(to bottom, #131947, #1a2049, #a72c11);
 }
 
-.wrapper{
+.wrapper {
     overflow: hidden;
     max-width: 390px;
     background: #fff;
@@ -23,23 +24,25 @@ html,body{
     box-shadow: 15px 15px 15px 20px rgba(0, 0, 0, 0.1);
 }
 
-.wrapper .title-text{
-    display: flex;
-    width: 200%;
-}
+    .wrapper .title-text {
+        display: flex;
+        width: 200%;
+    }
 
-.wrapper .title-text .title{
-    width: 50%;
-    font-size: 35px;
-    font-weight: 600;
-    text-align: center;
-    transition: all 0.6s cubic-bezier(0.68,-0.55,0.265,1.55);
-}
-.wrapper .form-container{
-    width: 100%; 
-    overflow: hidden;
-}
-.form-container .slide-controls{
+        .wrapper .title-text .title {
+            width: 50%;
+            font-size: 35px;
+            font-weight: 600;
+            text-align: center;
+            transition: all 0.6s cubic-bezier(0.68,-0.55,0.265,1.55);
+        }
+
+    .wrapper .form-container {
+        width: 100%;
+        overflow: hidden;
+    }
+
+.form-container .slide-controls {
     position: relative;
     display: flex;
     height: 50px;
@@ -50,7 +53,8 @@ html,body{
     justify-content: space-between;
     border: 1px solid lightgrey;
 }
-.slide-controls .slide{
+
+.slide-controls .slide {
     height: 100%;
     width: 100%;
     z-index: 1;
@@ -62,10 +66,12 @@ html,body{
     cursor: pointer;
     transition: all 0.6s ease;
 }
-.slide-controls .signup{
-    color:#000;
+
+.slide-controls .signup {
+    color: #000;
 }
-.slide-controls .slide-tab{
+
+.slide-controls .slide-tab {
     position: absolute;
     height: 100%;
     width: 50%;
@@ -73,75 +79,133 @@ html,body{
     z-index: 0;
     border-radius: 5px;
     transition: all 0.6s cubic-bezier(0.68,-0.55,0.265,1.55);
-    background:-webkit-linear-gradient(left, #38223D,#802902);
+    background: -webkit-linear-gradient(left, #38223D,#802902);
 }
-input[type="radio"]{
-    display:none;
+
+input[type="radio"] {
+    display: none;
 }
-#signup:checked ~ .slide-tab{
-    left:50%;
+
+#signup:checked ~ .slide-tab {
+    left: 50%;
 }
-#signup:checked ~ .signup{
+
+#signup:checked ~ .signup {
     color: #fff;
 }
-#signup:checked ~ .login{
+
+#signup:checked ~ .login {
     color: #000;
 }
-.form-container .form-inner{
+
+.form-container .form-inner {
     display: flex;
     width: 200%;
 }
-.form-container .form-inner form{
-    width: 50%;
-    transition: all 0.6s cubic-bezier(0.68,-0.55,0.265,1.55);
-}
-.form-inner form .field{
+
+    .form-container .form-inner form {
+        width: 50%;
+        transition: all 0.6s cubic-bezier(0.68,-0.55,0.265,1.55);
+    }
+
+.form-inner form .field {
     height: 50px;
     width: 100%;
     margin-top: 20px;
-
-}
-.form-inner form .field input{
-    height: 100%;
-    width: 100%;
-    outline: none;
-    padding-left: 15px;
-    font-size: 17px;
-    border-radius: 5px;
-    border: 1px solid lightgrey;
-    border-bottom-width: 2px;
-    transition: all 0.4s ease;
-}
-.form-inner form .field input:focus{
-    border-color: #fc83bb;
-}
-.form-inner form .pass-link{
-    margin-top: 5px;    
 }
 
-.form-inner form .pass-link a,
-.form-inner form .signup-link a{
-    color: #000;
-    text-decoration: none;
+    .form-inner form .field input {
+        height: 100%;
+        width: 100%;
+        outline: none;
+        padding-left: 15px;
+        font-size: 17px;
+        border-radius: 5px;
+        border: 1px solid lightgrey;
+        border-bottom-width: 2px;
+        transition: all 0.4s ease;
+    }
+
+        .form-inner form .field input:focus {
+            border-color: #fc83bb;
+        }
+
+.form-inner form .pass-link {
+    margin-top: 5px;
 }
 
-.form-inner form .signup-link{
+    .form-inner form .pass-link a,
+    .form-inner form .signup-link a {
+        color: #000;
+        text-decoration: none;
+    }
+
+.form-inner form .signup-link {
     text-align: center;
     margin-top: 30px;
 }
 
-.form-inner form .pass-link a:hover,
-.form-inner form .signup-link a:hover{
-    text-decoration: underline;
-}
+    .form-inner form .pass-link a:hover,
+    .form-inner form .signup-link a:hover {
+        text-decoration: underline;
+    }
 
-form .field input[type="submit"]{
+form .field input[type="submit"] {
     color: #fff;
     font-size: 20px;
     font-weight: 500;
     padding-left: 0px;
     border: none;
-    cursor: pointer; 
-    background:-webkit-linear-gradient(left, #38223D,#802902);
-
+    cursor: pointer;
+    background: -webkit-linear-gradient(left, #38223D,#802902);
 }
+
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    appearance: none;
+    outline: 0;
+    box-shadow: none;
+    border: 0 !important;
+    background: #802902;
+    background-image: none;
+    flex: 1;
+    padding: 0 .5em;
+    color: #fff;
+    cursor: pointer;
+    font-size: 1em;
+    font-family: 'Open Sans', sans-serif;
+}
+
+    select::-ms-expand {
+        display: none;
+    }
+
+.select {
+    position: relative;
+    display: flex;
+    width: 12em;
+    height: 2.5em;
+    line-height: 2.5em;
+    background: #fff;
+    overflow: hidden;
+    border-radius: .10em;
+    margin-top: 40px;
+}
+
+    .select::after {
+        content: '\25BC';
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding: 0 1em;
+        background: #802902;
+        cursor: pointer;
+        pointer-events: none;
+        transition: .25s all ease;
+    }
+
+    .select:hover::after {
+        color: #131947;
+    }

@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Net.Mail;
 using System.Web;
 using System.Web.Mvc;
 using SQTJobPortal.Models;
@@ -258,7 +259,7 @@ namespace SQTJobPortal.Controllers
         [Authorize(Roles = "Company")]
         public ActionResult RequestEdit(int id)
         {
-            var infocomp = db.JobRequest.FirstOrDefault(x => x.RequestId == id);
+            var infocomp = db.JobRequest.Where(x => x.RequestId == id).FirstOrDefault();
 
             return View(infocomp);
         }
@@ -271,23 +272,116 @@ namespace SQTJobPortal.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult RequestEdit(JobRequest req)
         {
-            var reqToUpdate = db.JobRequest.Find(req.RequestId);
-            if (reqToUpdate == null)
-            {
-                return HttpNotFound();
-            }
-            else
-            {
+            //var student = studentList.Where(s => s.StudentId == std.StudentId).FirstOrDefault();
+            //studentList.Remove(student);
+            //studentList.Add(std);
 
-               
-                    reqToUpdate.IsActive = req.IsActive;
-                    db.SaveChanges();
-                    ViewBag.UpdatedMessage = "Status Updated Succesfully!";
-                    return View("Requests", reqToUpdate);
+            var reqToUpdate = db.JobRequest.Find(req.RequestId);
+            //if (reqToUpdate == null)
+            //{
+            //    return HttpNotFound();
+            //}
+            //else
+            //{
+            //
+            reqToUpdate.IsActive = req.IsActive;
+            reqToUpdate.Email = req.Email;
+            reqToUpdate.User.Name = req.User.Name;
+            reqToUpdate.Job.Title = req.Job.Title;
+
+            db.SaveChanges();
+
+          
+
+            if (req.IsActive==true &&req.Email.Contains("hotmail"))
+            {
+                MailMessage message = new MailMessage();
+                SmtpClient client = new SmtpClient();
+                client.Credentials = new System.Net.NetworkCredential("dreamjobopportunities@hotmail.com", "caglacopurkaya1999");
+                client.Port = 587;
+                client.Host = "smtp.live.com";
+                client.EnableSsl = true;
+                message.To.Add(req.Email);
+                message.From = new MailAddress("dreamjobopportunities@hotmail.com");
+                message.Subject = "Request Response from DreamJob";
+                message.Body = "Dear" + " " + req.User.Name + " " + "You have successfully passed the first stage of your application for" + " " + req.Job.Title +"."+ " " + " Please wait for the company to contact you. " + " " + " We wish you a good day!";
+                client.Send(message);
+            }
+            else if (req.IsActive == true && req.Email.Contains("gmail"))
+            {
+                var fromAddress = new MailAddress("eceak1230@gmail.com");
+                var toAddress = new MailAddress(req.Email);
+                const string fromPassword = "5EF2kRZ5";
+                const string subject = "Request Response from DreamJob";
+                string body = "Dear" + " " + req.User.Name + " " + "You have successfully passed the first stage of your application for" + " " + req.Job.Title + "." + " " + "Please wait for the company to contact you. " + " " + "We wish you a good day!";
+
+                var smtp = new SmtpClient
+                {
+                    Host = "smtp.gmail.com",
+                    Port = 587,
+                    EnableSsl = true,
+                    DeliveryMethod = SmtpDeliveryMethod.Network,
+                    UseDefaultCredentials = false,
+                    Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
+                };
+                using (var message = new MailMessage(fromAddress, toAddress)
+                {
+                    Subject = subject,
+                    Body = body
+                })
+                {
+                    smtp.Send(message);
+                }
+            }
+
+            else if(req.IsActive == false && req.Email.Contains("hotmail"))
+            {
+                MailMessage message = new MailMessage();
+                SmtpClient client = new SmtpClient();
+                client.Credentials = new System.Net.NetworkCredential("dreamjobopportunities@hotmail.com", "caglacopurkaya1999");
+                client.Port = 587;
+                client.Host = "smtp.live.com";
+                client.EnableSsl = true;
+                message.To.Add(req.Email);
+                message.From = new MailAddress("dreamjobopportunities@hotmail.com");
+                message.Subject = "Request Response from DreamJob";
+                message.Body = "Dear" + " " + req.User.Name + " " + "You are not pass the first stage of your application. We are unable to proceed positively for " + " "+req.Job.Title + " " + "with you. But keep searching our site for other alternatives. " + " " + "We wish you a good day!";
+                client.Send(message);
+            }
+
+            else if (req.IsActive == false && req.Email.Contains("gmail"))
+            {
+                var fromAddress = new MailAddress("eceak1230@gmail.com");
+                var toAddress = new MailAddress(req.Email);
+                const string fromPassword = "5EF2kRZ5";
+                const string subject = "Request Response from DreamJob";
+                string body = "Dear" + " " + req.User.Name + " " + "You are not pass the first stage of your application. We are unable to proceed positively for " + " " + req.Job.Title + " " + "with you. But keep searching our site for other alternatives. " + " " + "We wish you a good day!";
+
+                var smtp = new SmtpClient
+                {
+                    Host = "smtp.gmail.com",
+                    Port = 587,
+                    EnableSsl = true,
+                    DeliveryMethod = SmtpDeliveryMethod.Network,
+                    UseDefaultCredentials = false,
+                    Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
+                };
+                using (var message = new MailMessage(fromAddress, toAddress)
+                {
+                    Subject = subject,
+                    Body = body
+                })
+                {
+                    smtp.Send(message);
+                }
+            }
+            req.Job.UserId = CompanyHelper.id;
+            ViewBag.UpdatedMessage = "Status Updated Succesfully!";
+            return View("Requests", req);
                
               
 
-            }
+            //}
         }
 
 
