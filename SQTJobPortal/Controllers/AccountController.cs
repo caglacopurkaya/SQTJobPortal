@@ -21,11 +21,9 @@ namespace SQTJobPortal.Controllers
         {
             var jointest = from c in db.User
                            join jc in db.Job on c.SeekerId equals jc.UserId
-                           //join j in db.Job on jc.CategoryId equals j.CategoryId
+
                            join req in db.JobRequest on jc.JobId equals req.JobId
-                           //join seeker in db.JobSeeker on req.SeekerId equals seeker.Id
-                           //join reqans in db.ReqAnswer on c.Id equals reqans.CompanyId
-                           //join conf in db.ConfirmRequest on reqans.AnswerId equals conf.ReqAnsId
+
 
                            select new ViewModel
                            {
@@ -33,10 +31,7 @@ namespace SQTJobPortal.Controllers
                                jobs = jc,
                                request = req,
 
-                               //request = req,
-                               //seeker = seeker
-                               //reqanswer = reqans,
-                               //confirm = conf
+
 
                            };
 
@@ -46,6 +41,12 @@ namespace SQTJobPortal.Controllers
             company.SeekerId = CompanyHelper.id;
 
             return View(company);
+        }
+
+
+        public ActionResult ErrorPage()
+        {
+            return View();
         }
         public ActionResult Login()
         {
@@ -67,9 +68,17 @@ namespace SQTJobPortal.Controllers
                     return Redirect(returnUrl);
 
                 }
-                else
+                else if (dataItem.AccountType == "Company")
                 {
                     return RedirectToAction("Index");
+                }
+                else if (dataItem.AccountType == "JobSeeker")
+                {
+                    return RedirectToAction("JobSeekerIndex");
+                }
+                else
+                {
+                    return RedirectToAction("ErrorPage");
                 }
             }
             else

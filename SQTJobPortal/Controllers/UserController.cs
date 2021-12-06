@@ -142,6 +142,7 @@ namespace SQTJobPortal.Controllers
                     jobs.Experience = viewModel.Experience;
                     jobs.PostedDate = viewModel.PostedDate;
                     jobs.DueToApply = viewModel.DueToApply;
+                    jobs.JobType = viewModel.JobType;
                     jobs.Salary = viewModel.Salary;
                     jobs.CategoryId = viewModel.CategoryId;
                     jobs.ProfessionId = viewModel.ProfessionId;
@@ -229,22 +230,16 @@ namespace SQTJobPortal.Controllers
 
             var jointest = from c in db.User
                            join jc in db.Job on c.SeekerId equals jc.UserId
-                           //join j in db.Job on jc.CategoryId equals j.CategoryId
-                           join req in db.JobRequest on jc.JobId equals req.JobId
-                           //join seeker in db.JobSeeker on req.SeekerId equals seeker.Id
-                           //join reqans in db.ReqAnswer on c.Id equals reqans.CompanyId
-                           //join conf in db.ConfirmRequest on reqans.AnswerId equals conf.ReqAnsId
+                         
+                           //join req in db.JobRequest on jc.JobId equals req.JobId
+                          
 
                            select new ViewModel
                            {
                                companies = c,
                                jobs = jc,
-                               request = req,
-
                                //request = req,
-                               //seeker = seeker
-                               //reqanswer = reqans,
-                               //confirm = conf
+
 
                            };
 
@@ -256,6 +251,54 @@ namespace SQTJobPortal.Controllers
             return View(company);
            
         }
+
+        [Authorize(Roles = "Company")]
+        public ActionResult JobEdit(int id)
+        {
+            var infocomp = db.Job.Where(x => x.JobId == id).FirstOrDefault();
+
+            return View(infocomp);
+        }
+
+
+
+
+        [Authorize(Roles = "Company")]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult JobEdit(Job job)
+        {
+          
+            var jobToUpdate = db.Job.Find(job.JobId);
+      
+            jobToUpdate.Title = job.Title;
+            jobToUpdate.Description = job.Description;
+            jobToUpdate.Experience = job.Experience;
+            jobToUpdate.DueToApply = job.DueToApply;
+            jobToUpdate.Salary = job.Salary;
+            jobToUpdate.JobType = job.JobType;
+
+
+            job.UserId = CompanyHelper.id;
+            ViewBag.UpdatedMessage = "Status Updated Succesfully!";
+            return View("JobAdversiments", job);
+
+
+
+            //}
+        }
+
+
+
+
+
+
+
+
+
+
+
+
         [Authorize(Roles = "Company")]
         public ActionResult RequestEdit(int id)
         {
@@ -272,18 +315,10 @@ namespace SQTJobPortal.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult RequestEdit(JobRequest req)
         {
-            //var student = studentList.Where(s => s.StudentId == std.StudentId).FirstOrDefault();
-            //studentList.Remove(student);
-            //studentList.Add(std);
+          
 
             var reqToUpdate = db.JobRequest.Find(req.RequestId);
-            //if (reqToUpdate == null)
-            //{
-            //    return HttpNotFound();
-            //}
-            //else
-            //{
-            //
+        
             reqToUpdate.IsActive = req.IsActive;
             reqToUpdate.Email = req.Email;
             reqToUpdate.User.Name = req.User.Name;
@@ -379,9 +414,6 @@ namespace SQTJobPortal.Controllers
             ViewBag.UpdatedMessage = "Status Updated Succesfully!";
             return View("Requests", req);
                
-              
-
-            //}
         }
 
 
