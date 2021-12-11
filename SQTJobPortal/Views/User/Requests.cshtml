@@ -108,7 +108,16 @@
                                 <i class="material-icons">find_replace</i> <span>Requests</span>
                             </a>
                         </li>
-
+                        <li>
+                            <a href="/User/AcceptedRequests/@Model.SeekerId">
+                                <i class="material-icons">done_all</i> <span>Accepted Requests</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/User/CancelledRequests/@Model.SeekerId">
+                                <i class="material-icons">highlight_off</i> <span>Cancelled Requests</span>
+                            </a>
+                        </li>
 
                         <li>
                             <a href="/User/Create/@Model.SeekerId">
@@ -123,7 +132,7 @@
                         </li>
                     }
 
-                </ul>>
+                </ul>
             </div>
 
 
@@ -176,7 +185,7 @@
                                         {
 
 
-                                            if (Model.SeekerId == viewModel.companies.SeekerId)
+                                            if (Model.SeekerId == viewModel.companies.SeekerId &&viewModel.request.IsActive==null)
                                             {
                                         <tr>
 
@@ -185,17 +194,17 @@
                                                 @if (viewModel.request.User.SeekerId == viewModel.request.JobSeekerId)
                                                 {@viewModel.request.User.Name}
                                             </td>
-                                            @if (viewModel.request.IsActive==null)
+                                            @if (viewModel.request.IsActive == null)
                                             {
                                                 <td><span class="status text-black">&bull;</span>@viewModel.request.IsActive Waiting Response</td>
                                             }
                                             else if (Convert.ToInt32(viewModel.request.IsActive) == 0)
                                             {
-                                            <td><span class="status text-danger">&bull;</span>@viewModel.request.IsActive Cancelled</td>
+                                                <td><span class="status text-danger">&bull;</span>@viewModel.request.IsActive Cancelled</td>
                                             }
                                             else
                                             {
-                                            <td><span class="status text-success">&bull;</span>@viewModel.request.IsActive Accepted</td>
+                                                <td><span class="status text-success">&bull;</span>@viewModel.request.IsActive Accepted</td>
                                             }
 
                                             <td> @viewModel.request.Profession </td>
@@ -205,7 +214,12 @@
                                             <td> @viewModel.request.Phone</td>
                                             <td> @viewModel.request.Email  </td>
 
-                                            <td><a href="#">> @viewModel.request.CvName </a></td>
+                                            <td> @Html.ActionLink("Download", "Download", "User", new { id = viewModel.request.FileDetails.Id }, null)</td>
+                                         
+
+                                                    
+                                                   
+                                          
                                             <td>
                                                 <div class="clicker" tabindex="1">Click for Motivation Letter</div>
                                                 <div class="hiddendiv">@viewModel.request.MotivationLetter</div>

@@ -20,6 +20,7 @@ namespace SQTJobPortal.Models
             this.Job = new HashSet<Job>();
             this.JobSeekerSkills = new HashSet<JobSeekerSkills>();
             this.JobRequest = new HashSet<JobRequest>();
+            this.FileDetails = new HashSet<FileDetails>();
         }
     
         public int SeekerId { get; set; }
@@ -46,5 +47,7 @@ namespace SQTJobPortal.Models
         public virtual ICollection<JobSeekerSkills> JobSeekerSkills { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<JobRequest> JobRequest { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<FileDetails> FileDetails { get; set; }
     }
 }

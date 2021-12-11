@@ -9,6 +9,8 @@
 
 namespace SQTJobPortal.Models
 {
+    using Amazon.ElasticMapReduce.Model;
+    using PagedList;
     using System;
     using System.Collections.Generic;
     
@@ -34,7 +36,7 @@ namespace SQTJobPortal.Models
         public Nullable<int> ProfessionId { get; set; }
         public Nullable<int> UserId { get; set; }
         public Nullable<bool> IsActive { get; set; }
-    
+       
         public virtual Category Category { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<JobSkills> JobSkills { get; set; }

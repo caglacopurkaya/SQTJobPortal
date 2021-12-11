@@ -44,6 +44,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AWSSDK, Version=2.3.55.2, Culture=neutral, PublicKeyToken=9f476d3089b52be3, processorArchitecture=MSIL">
+      <HintPath>..\packages\AWSSDK.2.3.55.2\lib\net45\AWSSDK.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -142,6 +145,12 @@
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.AppContext, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
@@ -358,6 +367,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\SeekerController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -372,9 +382,13 @@
     <Compile Include="Models\Country.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\FileDetails.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Job.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\JobHelper.cs" />
     <Compile Include="Models\JobRequest.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -414,6 +428,7 @@
     <Compile Include="Models\ViewModel.cs" />
     <Compile Include="Models\ViewModel2.cs" />
     <Compile Include="Models\ViewModel3.cs" />
+    <Compile Include="Models\ViewModel4.cs" />
     <Compile Include="MyRoleProvider\SiteRole.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -424,6 +439,7 @@
     <Content Include="admin\css\style.min.css" />
     <Content Include="admin\css\themes\all-themes.css" />
     <Content Include="admin\css\themes\all-themes.min.css" />
+    <Content Include="admin\css\stylee.css" />
     <Content Include="admin\css\themes\theme-amber.css" />
     <Content Include="admin\css\themes\theme-amber.min.css" />
     <Content Include="admin\css\themes\theme-black.css" />
@@ -574,7 +590,6 @@
     <Content Include="admin\pages\charts\jquery-knob.html" />
     <Content Include="admin\pages\charts\morris.html" />
     <Content Include="admin\pages\charts\sparkline.html" />
-    <Content Include="admin\pages\examples\404.html" />
     <Content Include="admin\pages\examples\500.html" />
     <Content Include="admin\pages\examples\blank.html" />
     <Content Include="admin\pages\examples\forgot-password.html" />
@@ -3903,6 +3918,7 @@
     <Content Include="Content\js\request2.js" />
     <Content Include="Content\js\request3.js" />
     <Content Include="Content\login.css" />
+    <Content Include="Content\PagedList.css" />
     <Content Include="Content\Profile.css" />
     <Content Include="Content\request2.css" />
     <Content Include="Content\requests.css" />
@@ -4435,9 +4451,19 @@
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\User\JobEdit.cshtml" />
     <Content Include="Views\Account\ErrorPage.cshtml" />
+    <Content Include="Views\Account\JobSeekerIndex.cshtml" />
+    <Content Include="Views\Seeker\SeekerProfile.cshtml" />
+    <Content Include="Views\Seeker\JobDetails.cshtml" />
+    <Content Include="Views\Seeker\PastRequests.cshtml" />
+    <Content Include="Views\Seeker\CreateRequest.cshtml" />
+    <Content Include="Views\Seeker\Cv.cshtml" />
+    <Content Include="Views\User\CancelledRequests.cshtml" />
+    <Content Include="Views\User\AcceptedRequests.cshtml" />
+    <Content Include="Views\User\Jobs.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Uploads\" />
     <Folder Include="Views\Shared\" />
   </ItemGroup>
   <ItemGroup>

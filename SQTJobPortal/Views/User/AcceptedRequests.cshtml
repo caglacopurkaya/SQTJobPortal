@@ -1,15 +1,7 @@
 ﻿@using SQTJobPortal.Models
 @model User
-@{
-    Layout = null;
-}
-@{
-    IEnumerable<ViewModel> viewModels = ViewData["Jointable"] as IEnumerable<ViewModel>;
 
-}
-
-@using Microsoft.AspNet.Identity
-
+@{ IEnumerable<ViewModel> viewModels = ViewData["TestTable"] as IEnumerable<ViewModel>; }
 <!DOCTYPE html>
 <html>
 
@@ -155,8 +147,8 @@
         <div class="container-fluid">
             <div class="block-header">
                 <h2>
-                    JOBS TABLE
-                   
+                    REQUESTS TABLE
+
                 </h2>
             </div>
             <div class="row clearfix">
@@ -166,7 +158,7 @@
                             <h2>
                                 PROCESS TABLE
                             </h2>
-                          
+
                         </div>
                         <div class="body">
                             <div class="table-responsive">
@@ -174,106 +166,90 @@
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>Title</th>
+                                            <th>Name</th>
                                             <th>Status</th>
-                                            <th>Category</th>
                                             <th>Profession</th>
-                                            <th>Country</th>
-                                            <th>Salary</th>
-
-                                            <th>Due Date</th>
-                                            <th>Description</th>
-                                            <th>Skills</th>
-                                            <th>Experience</th>
-
-                                            <th>Edit</th>
+                                            <th>Education</th>
+                                            <th>Phone</th>
+                                            <th>Email</th>
+                                            <th>CV</th>
+                                            <th>Motivation Letter</th>
+                                            <th>Apply Date</th>
+                                           
                                         </tr>
                                     </thead>
 
                                     <tbody>
-                                        @{var temp = 0; }
+
                                         @foreach (ViewModel viewModel in viewModels)
                                         {
-                                            if (viewModel.jobs.JobId != temp && Model.SeekerId == viewModel.companies.SeekerId)
+
+
+                                            if (Model.SeekerId == viewModel.companies.SeekerId && viewModel.request.IsActive ==true)
                                             {
-                                                <tr>
-                                                    <td>#</td>
-                                                    <td><a href="/User/JobDetails/@viewModel.jobs.JobId"></a>@viewModel.jobs.Title</td>
+                                        <tr>
 
-                                                    @if (viewModel.jobs.DueToApply < DateTime.Now)
-                                                    {
+                                            <td><a href="#"><img src="~/Content/anonim-foto.png" style="max-width:50px; max-height:50px;" class="avatar" alt="Avatar"></a></td>
+                                            <td>
+                                                @if (viewModel.request.User.SeekerId == viewModel.request.JobSeekerId)
+                                                {@viewModel.request.User.Name}
+                                            </td>
+                                            @if (viewModel.request.IsActive == null)
+                                            {
+                                                <td><span class="status text-black">&bull;</span>@viewModel.request.IsActive Waiting Response</td>
+                                            }
+                                            else if (Convert.ToInt32(viewModel.request.IsActive) == 0)
+                                            {
+                                                <td><span class="status text-danger">&bull;</span>@viewModel.request.IsActive Cancelled</td>
+                                            }
+                                            else
+                                            {
+                                                <td><span class="status text-success">&bull;</span>@viewModel.request.IsActive Accepted</td>
+                                            }
 
-                                                        <td><span class="label bg-red">Not Active</span></td>
-
-                                                    }
-                                                    else
-                                                    {
-                                                        <td><span class="label bg-green">Active</span></td>
-
-                                                    }
-
-
-                                                    <td> @viewModel.jobs.Category.CategoryName</td>
-
-                                                    <td> @viewModel.jobs.Professions.ProfessionName </td>
-                                                    <td><i class="fas fa-map-marker-alt"></i>@viewModel.jobs.User.Country.CountryName</td>
-                                                    <td> @viewModel.jobs.Salary </td>
-                                                    <td> @String.Format("{0:dd/MM/yyyy}", viewModel.jobs.DueToApply) </td>
-
+                                            <td> @viewModel.request.Profession </td>
+                                            <td> @viewModel.request.Education </td>
 
 
-                                                    <td>
-                                                        <div class="clicker" tabindex="1" style="width:240px">Click for Description</div>
-                                                        <div class="hiddendiv">@viewModel.jobs.Description</div>
-                                                    </td>
+                                            <td> @viewModel.request.Phone</td>
+                                            <td> @viewModel.request.Email  </td>
 
-                                                    <td>
-                                                        <div class="clicker" tabindex="1">Click for Skills</div>
-                                                        <div class="hiddendiv">@viewModel.jobs.JobSkills</div>
-                                                    </td>
-                                                
-                                                    <td>
-                                                        <div class="clicker" tabindex="1">Click for Experiences</div>
-                                                        <div class="hiddendiv">@viewModel.jobs.Experience</div>
-                                                    </td>
-                                                    <td>
-                                                        <div class="progress" style="margin-left:20px">
-                                                            <div class="progress-bar bg-blue" role="progressbar" aria-valuenow="52" aria-valuemin="0" aria-valuemax="100" style="width: 35%" >
-                                                                <a href="/User/JobEdit/@viewModel.jobs.JobId"><i class="material-icons" style="color:deepskyblue">extension</i></a>
+                                            <td> @Html.ActionLink("Download", "Download", "User", new { id = viewModel.request.FileDetails.Id }, null)</td>
 
 
-                                                            </div>
-                                                            <div class="progress-bar bg-pink" role="progressbar" aria-valuenow="52" aria-valuemin="0" aria-valuemax="100" style="width: 35%; margin-left: 18px">
-                                                                <a href="/User/DeleteJob/@viewModel.jobs.JobId"><i class="material-icons" style="color:deeppink">report_problem</i></a>
 
 
-                                                            </div>
-                                                           
-                                                        </div>
-                                                    </td>
-                                                </tr>
+
+                                            <td>
+                                                <div class="clicker" tabindex="1">Click for Motivation Letter</div>
+                                                <div class="hiddendiv">@viewModel.request.MotivationLetter</div>
+                                            </td>
+                                            <td> @String.Format("{0:dd/MM/yyyy}", viewModel.request.ApplyDate)</td>
+                                            <td><a href="/User/RequestEdit/@viewModel.request.RequestId" class="view" title="View Details" data-toggle="tooltip"><i class="material-icons">&#xE5C8;</i></a></td>
+                                        </tr>
 
                                             }
                                         }
+
+
                                     </tbody>
 
                                     <tfoot>
+
                                         <tr>
                                             <th>#</th>
-                                            <th>Title</th>
+                                            <th>Name</th>
                                             <th>Status</th>
-                                            <th>Category</th>
                                             <th>Profession</th>
-                                            <th>Country</th>
-                                            <th>Salary</th>
-
-                                            <th>Due Date</th>
-                                            <th>Description</th>
-                                            <th>Skills</th>
-                                            <th>Experience</th>
-
-                                            <th>Edit</th>
+                                            <th>Education</th>
+                                            <th>Phone</th>
+                                            <th>Email</th>
+                                            <th>CV</th>
+                                            <th>Motivation Letter</th>
+                                            <th>Apply Date</th>
+                                         
                                         </tr>
+
                                     </tfoot>
                                 </table>
                             </div>
@@ -320,3 +296,4 @@
 </body>
 
 </html>
+

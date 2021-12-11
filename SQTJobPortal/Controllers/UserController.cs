@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
-using System.Web;
 using System.Web.Mvc;
+using PagedList;
+using PagedList.Mvc;
 using SQTJobPortal.Models;
 
 namespace SQTJobPortal.Controllers
@@ -18,10 +17,16 @@ namespace SQTJobPortal.Controllers
         private SQTJobPortalEntities1 db = new SQTJobPortalEntities1();
 
         [Authorize(Roles = "Company,JobSeeker")]
-        public ActionResult Index()
+        public ActionResult Jobs()
         {
-            var jobs = db.Job.Include(e => e.Category);
-            return View(jobs.ToList());
+
+
+            var JobList = db.Job.ToList().ToPagedList(1, 5);
+                 
+                return View(JobList);
+       
+
+          
         }
 
         public PartialViewResult _CategoryList()
@@ -93,6 +98,66 @@ namespace SQTJobPortal.Controllers
             company.SeekerId = CompanyHelper.id;
             return View(company);
         }
+
+
+        [Authorize(Roles = "Company")]
+        public ActionResult CancelledRequests()
+        {
+
+
+            var testTable = from c in db.User
+                            join jc in db.Job on c.SeekerId equals jc.UserId
+                            join req in db.JobRequest on jc.JobId equals req.JobId
+                            join user in db.User on req.JobSeekerId equals user.SeekerId
+
+                            select new ViewModel
+                            {
+                                companies = c,
+                                jobs = jc,
+                                request = req,
+                                user = user,
+
+
+
+                            };
+            ViewData["TestTable"] = testTable;
+
+
+            User company = new User();
+            company.SeekerId = CompanyHelper.id;
+            return View(company);
+        }
+
+
+
+        [Authorize(Roles = "Company")]
+        public ActionResult AcceptedRequests()
+        {
+
+
+            var testTable = from c in db.User
+                            join jc in db.Job on c.SeekerId equals jc.UserId
+                            join req in db.JobRequest on jc.JobId equals req.JobId
+                            join user in db.User on req.JobSeekerId equals user.SeekerId
+
+                            select new ViewModel
+                            {
+                                companies = c,
+                                jobs = jc,
+                                request = req,
+                                user = user,
+
+
+
+                            };
+            ViewData["TestTable"] = testTable;
+
+
+            User company = new User();
+            company.SeekerId = CompanyHelper.id;
+            return View(company);
+        }
+
 
 
         [Authorize(Roles = "Company,JobSeeker")]
@@ -414,6 +479,24 @@ namespace SQTJobPortal.Controllers
             ViewBag.UpdatedMessage = "Status Updated Succesfully!";
             return View("Requests", req);
                
+        }
+
+
+
+
+
+        [Authorize(Roles = "Company")]
+        public ActionResult Download(int id)
+        {
+            SQTJobPortalEntities1 db = new SQTJobPortalEntities1();
+            FileDetails file = db.FileDetails.Where(x => x.Id == id).FirstOrDefault();
+            if (System.IO.File.Exists(Server.MapPath(file.FilePath)))
+            {
+                byte[] bytes = System.IO.File.ReadAllBytes(Server.MapPath(file.FilePath));
+                return File(bytes, System.Net.Mime.MediaTypeNames.Application.Octet, file.FileName);
+            }
+            User user = db.User.FirstOrDefault(x => x.SeekerId == id);
+            return RedirectToAction("Requests", "User", user);
         }
 
 

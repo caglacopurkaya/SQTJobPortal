@@ -1,0 +1,457 @@
+﻿@model SQTJobPortal.Models.ViewModel2
+
+
+
+@{
+    Layout = null;
+}
+
+
+@using Microsoft.AspNet.Identity
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Request</title>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="manifest" href="site.webmanifest" />
+
+
+    <!-- CSS here -->
+    <link rel="stylesheet" href="~/site/assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/site/assets/css/owl.carousel.min.css" />
+    <link rel="stylesheet" href="~/site/assets/css/flaticon.css" />
+    <link rel="stylesheet" href="~/site/assets/css/price_rangs.css" />
+    <link rel="stylesheet" href="~/site/assets/css/slicknav.css" />
+    <link rel="stylesheet" href="~/site/assets/css/animate.min.css" />
+    <link rel="stylesheet" href="~/site/assets/css/magnific-popup.css" />
+    <link rel="stylesheet" href="~/site/assets/css/fontawesome-all.min.css" />
+    <link rel="stylesheet" href="~/site/assets/css/themify-icons.css" />
+    <link rel="stylesheet" href="~/site/assets/css/slick.css" />
+    <link rel="stylesheet" href="~/site/assets/css/nice-select.css" />
+    <link rel="stylesheet" href="~/site/assets/css/style.css" />
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css" />
+
+    <!-- Bootstrap Core Css -->
+    <link href="~/admin/plugins/bootstrap/css/bootstrap.css" rel="stylesheet" />
+
+    <!-- Waves Effect Css -->
+    <link href="~/admin/plugins/node-waves/waves.css" rel="stylesheet" />
+
+    <!-- Animation Css -->
+    <link href="~/admin/plugins/animate-css/animate.css" rel="stylesheet" />
+
+    <!-- Custom Css -->
+    <link href="~/admin/css/stylee.css" rel="stylesheet" />
+
+    <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
+    <link href="~/admin/css/themes/all-themes.css" rel="stylesheet" />
+
+    \
+
+    <!-- Colorpicker Css -->
+    <link href="~/admin/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.css" rel="stylesheet" />
+
+    <!-- Dropzone Css -->
+    <link href="~/admin/plugins/dropzone/dropzone.css" rel="stylesheet" />
+
+    <!-- Multi Select Css -->
+    <link href="~/admin/plugins/multi-select/css/multi-select.css" rel="stylesheet" />
+
+    <!-- Bootstrap Spinner Css -->
+    <link href="~/admin/plugins/jquery-spinner/css/bootstrap-spinner.css" rel="stylesheet" />
+
+    <!-- Bootstrap Tagsinput Css -->
+    <link href="~/admin/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css" rel="stylesheet" />
+
+    <!-- Bootstrap Select Css -->
+    <link href="~/admin/plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
+
+    <!-- noUISlider Css -->
+    <link href="~/admin/plugins/nouislider/nouislider.min.css" rel="stylesheet" />
+
+
+
+</head>
+
+<body>
+
+    <header>
+        <!-- Header Start -->
+        <div class="header-area header-transparrent">
+            <div class="headder-top header-sticky">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-lg-3 col-md-2">
+                            <!-- Logo -->
+                            <div class="logo">
+                                <a href="#"><img src="~/site/assets/img/logo/logo.png" alt="" style="max-width:200px; max-height:150px" /></a>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-9 col-md-9">
+                            <div class="menu-wrapper">
+                                <!-- Main-menu -->
+                                <div class="main-menu">
+                                    <nav class="d-none d-lg-block">
+                                        <ul id="navigation">
+
+
+
+                                            @if (User.Identity.IsAuthenticated)
+                                            {
+                                                <li><a href="~/Account/JobSeekerIndex">Home Page </a></li>
+                                                <li><a href="~/Seeker/Prediction/@Model.users.SeekerId">Find your Dream Job</a></li>
+                                                <li>
+                                                    <a href="#">Profile</a>
+                                                    <ul class="submenu">
+                                                        <li><a href="~/Seeker/Cv/@Model.users.SeekerId">Cv</a></li>
+                                                        <li><a href="~/Seeker/PastRequests/@Model.users.SeekerId">Request</a></li>
+                                                        <li><a href="~/Seeker/SeekerProfile/@Model.users.SeekerId">Profile Edit</a></li>
+
+
+
+                                                    </ul>
+                                                </li>
+                                                <li><a href="/Home/Contact/@Model.users.SeekerId">Contact</a></li>
+                                                <div class="header-btn d-none f-right d-lg-block" style="margin-left:25px; margin-top:20px ">
+                                                    <a href="~/Account/SignOut" class="btn head-btn2">Sign Out</a>
+                                                </div>
+
+
+
+                                            }
+
+                                            @if (User.Identity.IsAuthenticated == false)
+                                            {
+                                                <li><a href="~/Home/Index">Home</a></li>
+                                                <li><a href="/Account/Login" class="btn head-btn2">Login</a></li>
+
+                                            }
+
+
+                                        </ul>
+                                    </nav>
+                                </div>
+
+                                <!-- Header-btn -->
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Header End -->
+    </header>
+    <!--body-->
+    @*<% @Page Language="C#" Inherits="System.Web.Mvc.ViewPage
+        <IEnumerable<Insert_PDF_Path_Database_Download.Files>>" %>*@
+
+    <section class="content" style="margin-left:-1px">
+        <div class="container-fluid">
+            <div class="block-header">
+                <h2>
+                    APPLY TO JOB
+                    <small>with your dreams</small>
+                </h2>
+            </div>
+            <!-- Input -->
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="header">
+                            <h2>
+                                CV Upload Form
+
+                            </h2>
+                            <h3 style="color:red">@TempData["fail"]</h3>
+                            <div class="body">
+
+
+                                @using (Html.BeginForm("Cv", "Seeker", FormMethod.Post, new { @class = "form-horizontal", enctype = "multipart/form-data" }))
+                                {
+                                    @*@Html.AntiForgeryToken()*@
+                                    <div class="form-horizontal">
+                                        @*@Html.ValidationSummary(true)*@
+                                        <h2 class="card-inside-title">FIRST AND LAST NAME</h2>
+                                        <div class="row clearfix">
+                                            <div class="col-sm-12">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" class="form-control" name="Name" value="@Model.users.Name" placeholder="Please enter the title" readonly;=readonly; />
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="row clearfix">
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                <div class="card">
+                                                    <div class="header">
+                                                        <h2>
+                                                            CV FILE UPLOAD - DRAG & DROP OR WITH CLICK & CHOOSE
+
+                                                        </h2>
+
+                                                    </div>
+                                                    <div class="body">
+                                                        <form action="/" id="frmFileUpload" class="dropzone" method="post" enctype="multipart/form-data">
+                                                            <div class="dz-message">
+                                                                <div class="drag-icon-cph">
+                                                                    <i class="material-icons">touch_app</i>
+                                                                </div>
+                                                                <h3>Drop files here or click to upload.</h3>
+
+                                                            </div>
+                                                            <div class="fallback">
+                                                                <input name="postedFile" type="file" multiple=multiple />
+                                                                <input type="submit" value="Upload" />
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+
+                                        @Html.HiddenFor(x => x.users.SeekerId)
+
+
+                                        <!--<div class="form-group">-->
+                                        @*<input type="submit" value="Create" class="btn btn-default" />*@
+                                        <!--<input type="submit" value="CREATE" class="btn btn-danger waves-effect" style="width:100%" />
+
+                                        </div>-->
+
+
+                                    </div>
+
+                                }
+
+                                <table>
+                                    @if (Model.files.UserId == Model.users.SeekerId) { 
+                                        <tr>
+
+                                           
+                                            
+                                            <td>@Html.ActionLink("Download Your CV","Download","Seeker",new { id = Model.files.Id }, null)</td>
+                                        </tr>
+                                    }
+                                </table>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+    <footer>
+        <!-- Footer Start-->
+        <div class="footer-area footer-bg footer-padding">
+            <div class="container">
+                <div class="row d-flex justify-content-between">
+                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
+                        <div class="single-footer-caption mb-50">
+                            <div class="single-footer-caption mb-30">
+                                <div class="footer-tittle">
+                                    <h4>About Us</h4>
+                                    <div class="footer-pera">
+                                        <p>We are a structure established in 2021 with the aim of creating a site that values talents and tries to provide job opportunities accordingly.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-5">
+                        <div class="single-footer-caption mb-50">
+                            <div class="footer-tittle">
+                                <h4>Contact Info</h4>
+                                <ul>
+                                    <li>
+                                        <p>
+
+                                            Address : Cd:11 Kadıköy
+                                            İstanbul, Turkey
+                                        </p>
+                                    </li>
+                                    <li><a href="#">Phone : +216 111 11 11</a></li>
+                                    <li><a href="#">Email : support@dreamjob.com</a></li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-5">
+                        <div class="single-footer-caption mb-50">
+                            <div class="footer-tittle">
+                                <h4>Important Link</h4>
+                                <ul>
+                                    <li><a href="/Home/Contact">Find your Dream Job</a></li>
+
+                                    <li><a href="/Home/Contact">Contact Us</a></li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!--  -->
+
+            </div>
+        </div>
+        <!-- footer-bottom area -->
+        <div class="footer-bottom-area footer-bg">
+            <div class="container">
+                <div class="footer-border">
+                    <div class="row d-flex justify-content-between align-items-center">
+                        <div class="col-xl-10 col-lg-10 ">
+                            <div class="footer-copy-right">
+                                <p>
+                                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                                    Copyright &copy;
+                                    <script>document.write(new Date().getFullYear());</script> <a>All rights reserved ....</a>
+                                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-xl-2 col-lg-2">
+                            <div class="footer-social f-right">
+                                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fas fa-globe"></i></a>
+                                <a href="#"><i class="fab fa-behance"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer End-->
+    </footer>
+
+
+    <!-- JS here -->
+    <!-- All JS Custom Plugins Link Here here -->
+    <script src="./site/assets/js/vendor/modernizr-3.5.0.min.js"></script>
+    <!-- Jquery, Popper, Bootstrap -->
+    <script src="./site/assets/js/vendor/jquery-1.12.4.min.js"></script>
+    <script src="./site/assets/js/popper.min.js"></script>
+    <script src="./site/assets/js/bootstrap.min.js"></script>
+
+
+    <!-- Jquery Slick , Owl-Carousel Plugins -->
+    <script src="./site/assets/js/owl.carousel.min.js"></script>
+    <script src="./site/assets/js/slick.min.js"></script>
+    <script src="./site/assets/js/price_rangs.js"></script>
+
+    <!-- One Page, Animated-HeadLin -->
+    <script src="./site/assets/js/wow.min.js"></script>
+    <script src="./site/assets/js/animated.headline.js"></script>
+    <script src="./site/assets/js/jquery.magnific-popup.js"></script>
+
+    <!-- Scrollup, nice-select, sticky -->
+    <script src="./site/assets/js/jquery.scrollUp.min.js"></script>
+    <script src="./site/assets/js/jquery.nice-select.min.js"></script>
+    <script src="./site/assets/js/jquery.sticky.js"></script>
+
+    <!-- contact js -->
+    <script src="./site/assets/js/contact.js"></script>
+    <script src="./site/assets/js/jquery.form.js"></script>
+    <script src="./site/assets/js/jquery.validate.min.js"></script>
+    <script src="./site/assets/js/mail-script.js"></script>
+    <script src="./site/assets/js/jquery.ajaxchimp.min.js"></script>
+
+    <!-- Jquery Plugins, main Jquery -->
+    <script src="./site/assets/js/plugins.js"></script>
+    <script src="./site/assets/js/main.js"></script>
+    <script src="~/admin/plugins/jquery/jquery.min.js"></script>
+
+    <!-- Bootstrap Core Js -->
+    <script src="~/admin/plugins/bootstrap/js/bootstrap.js"></script>
+
+    <!-- Select Plugin Js -->
+    <script src="~/admin/plugins/bootstrap-select/js/bootstrap-select.js"></script>
+
+    <!-- Slimscroll Plugin Js -->
+    <script src="~/admin/plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
+
+    <!-- Waves Effect Plugin Js -->
+    <script src="~/admin/plugins/node-waves/waves.js"></script>
+
+    <!-- Ckeditor -->
+    <script src="~/admin/plugins/ckeditor/ckeditor.js"></script>
+
+    <!-- TinyMCE -->
+    <script src="~/admin/plugins/tinymce/tinymce.js"></script>
+
+    <!-- Custom Js -->
+    <script src="~/admin/js/admin.js"></script>
+    <script src="~/admin/js/pages/forms/editors.js"></script>
+
+    <!-- Demo Js -->
+    <script src="~/admin/js/demo.js"></script>
+
+
+
+
+    <!-- Bootstrap Colorpicker Js -->
+    <script src="~/admin/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.js"></script>
+
+    <!-- Dropzone Plugin Js -->
+    <script src="~/admin/plugins/dropzone/dropzone.js"></script>
+
+    <!-- Input Mask Plugin Js -->
+    <script src="~/admin/plugins/jquery-inputmask/jquery.inputmask.bundle.js"></script>
+
+    <!-- Multi Select Plugin Js -->
+    <script src="~/admin/plugins/multi-select/js/jquery.multi-select.js"></script>
+
+    <!-- Jquery Spinner Plugin Js -->
+    <script src="~/admin/plugins/jquery-spinner/js/jquery.spinner.js"></script>
+
+    <!-- Bootstrap Tags Input Plugin Js -->
+    <script src="~/admin/plugins/bootstrap-tagsinput/bootstrap-tagsinput.js"></script>
+
+    <!-- noUISlider Plugin Js -->
+    <script src="~/admin/plugins/nouislider/nouislider.js"></script>
+
+    <!-- Waves Effect Plugin Js -->
+    <script src="~/admin/plugins/node-waves/waves.js"></script>
+
+    <script src="~/admin/js/pages/forms/advanced-form-elements.js"></script>
+
+    <!-- Demo Js -->
+
+</body>
+</html>
+</Insert_PDF_Path_Database_Download.Files>

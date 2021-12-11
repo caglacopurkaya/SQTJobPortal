@@ -17,6 +17,8 @@ namespace SQTJobPortal.Models
 
         public User user { get; set; }
 
+        public FileDetails files { get; set; }
+
 
     }
 }

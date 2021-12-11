@@ -118,6 +118,16 @@
                             </a>
                         </li>
 
+                        <li>
+                            <a href="/User/AcceptedRequests/@Model.SeekerId">
+                                <i class="material-icons">done_all</i> <span>Accepted Requests</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/User/CancelledRequests/@Model.SeekerId">
+                                <i class="material-icons">highlight_off</i> <span>Cancelled Requests</span>
+                            </a>
+                        </li>
 
                         <li>
                             <a href="/User/Create/@Model.SeekerId">
@@ -385,7 +395,7 @@
                                                     <td>#</td>
                                                     <td><a href="/User/JobDetails/@viewModel.jobs.JobId"></a>@viewModel.jobs.Title</td>
 
-                                                    @if (Convert.ToInt32(viewModel.jobs.IsActive) == 0)
+                                                    @if (viewModel.jobs.DueToApply < DateTime.Now)
                                                     {
                                                         <td><span class="label bg-red">Not Active</span></td>
 

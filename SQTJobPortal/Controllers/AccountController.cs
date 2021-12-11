@@ -16,6 +16,8 @@ namespace SQTJobPortal.Controllers
 
         public SQTJobPortalEntities1 db = new SQTJobPortalEntities1();
         // GET: Account
+
+
         [Authorize(Roles = "Company")]
         public ActionResult Index()
         {
@@ -42,6 +44,35 @@ namespace SQTJobPortal.Controllers
 
             return View(company);
         }
+
+
+        [Authorize(Roles = "JobSeeker")]
+        public ActionResult JobSeekerIndex()
+        {
+            var jointest = from c in db.User
+                           join jc in db.Job on c.SeekerId equals jc.UserId
+
+                           //join req in db.JobRequest on jc.JobId equals req.JobId
+
+
+                           select new ViewModel
+                           {
+                               companies = c,
+                               jobs = jc,
+                               //request = req,
+
+
+
+                           };
+
+            ViewData["Jointable"] = jointest;
+
+            User company = new User();
+            company.SeekerId = CompanyHelper.id;
+
+            return View(company);
+        }
+
 
 
         public ActionResult ErrorPage()

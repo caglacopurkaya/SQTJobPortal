@@ -14,7 +14,7 @@
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <title>JOB ADVERSITEMENT</title>
     <!-- Favicon-->
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
+ 
     <link href="~/admin/css/clicker.css" rel="stylesheet" />
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
@@ -114,7 +114,16 @@
                                 <i class="material-icons">find_replace</i> <span>Requests</span>
                             </a>
                         </li>
-
+                        <li>
+                            <a href="/User/AcceptedRequests/@Model.User.SeekerId">
+                                <i class="material-icons">done_all</i> <span>Accepted Requests</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/User/CancelledRequests/@Model.User.SeekerId">
+                                <i class="material-icons">highlight_off</i> <span>Cancelled Requests</span>
+                            </a>
+                        </li>
 
                         <li>
                             <a href="/User/Create/@Model.User.SeekerId">
@@ -129,7 +138,7 @@
                         </li>
                     }
 
-                </ul>>
+                </ul>
             </div>
 
 

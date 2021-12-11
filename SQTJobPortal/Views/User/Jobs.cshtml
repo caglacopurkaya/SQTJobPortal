@@ -1,0 +1,54 @@
+﻿
+@using SQTJobPortal.Models
+
+@using PagedList
+@using PagedList.Mvc
+@model PagedList.IPagedList<Job>
+<div class="col-xl-15">
+    @{var temp = 0; }
+    @foreach (var item in Model)
+    {
+        <div class="col col-12">
+            @if (item.PostedDate >= DateTime.Now.AddDays(-60) && item.DueToApply > DateTime.Now && item.JobId != temp)
+            {<div class="single-job-items mb-30">
+                    <div class="job-items">
+
+                        <div class="job-tittle job-tittle2">
+                            <a ><h4>@item.Title</h4></a>
+                            <ul>
+                                <li> @item.Category.CategoryName</li>
+
+                                <li><i class="fas fa-map-marker-alt"></i>@item.User.Country.CountryName</li>
+                                <li>@item.Salary </li>
+                                <span> @String.Format("{0:dd/MM/yyyy}", item.PostedDate) to</span>
+
+                                <span>  @String.Format("{0:dd/MM/yyyy}", item.DueToApply)</span>
+                            </ul>
+                            <span>@item.JobType</span>
+                        </div>
+                    </div>
+
+
+
+                    <div class="items-link f-right">
+
+                        <a href="/Seeker/JobDetails/@item.JobId">Click Detail</a>
+
+
+                    </div>
+                </div>
+
+            }
+
+
+            <!-- single-job-content -->
+        </div>
+    }
+
+    @Html.PagedListPager((IPagedList)Model,p=>Url.Action("Jobs",new {p }),new PagedListRenderOptions {
+
+    LiElementClasses=new List<string>
+    { "page-link"}
+
+})
+</div>

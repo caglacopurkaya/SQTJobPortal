@@ -11,9 +11,12 @@
 
 
                 <div class="services-cap">
-
                     <h5> <a href="/User/JobList/@item.CategoryId">@item.CategoryName</a></h5>
-                    @*<span>[@item.Count]</span>*@
+                  
+
+                    @*<a>
+                        @Html.ActionLink(@item.CategoryName, "JobSeekerIndex", "Seeker", new { page = 1, category = @item.CategoryId }, null);
+                    </a>*@  
                 </div>
 
 

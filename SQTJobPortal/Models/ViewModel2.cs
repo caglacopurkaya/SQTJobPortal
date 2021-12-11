@@ -16,12 +16,15 @@ namespace SQTJobPortal.Models
         public int UserId;
         public Job jobs;
 
-
+        public List<JobRequest> requests { get; set; }
+        public List<User> userss { get; set; }
         public List<Skills> skills{ get; set; }
         
+        public JobRequest request { get; set; }
 
-     
+        public FileDetails files { get; set; }
 
+        
 
     }
 }

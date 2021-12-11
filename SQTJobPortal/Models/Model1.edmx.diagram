@@ -27,6 +27,9 @@
         <AssociationConnector Association="SQTJobPortalModel.FK_User_TypeofProfession" ManuallyRouted="false" />
         <AssociationConnector Association="SQTJobPortalModel.FK__JobSeeker__JobSe__3F466844" ManuallyRouted="false" />
         <AssociationConnector Association="SQTJobPortalModel.FK_JobRequest_User" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="SQTJobPortalModel.FileDetails" Width="1.5" PointX="10.375" PointY="0.875" />
+        <AssociationConnector Association="SQTJobPortalModel.FK_JobRequest_FileDetails" />
+        <AssociationConnector Association="SQTJobPortalModel.FK_FileDetails_User" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

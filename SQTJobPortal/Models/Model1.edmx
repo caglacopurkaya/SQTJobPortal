@@ -29,6 +29,15 @@
           <Property Name="CountryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CountryName" Type="varchar" MaxLength="100" />
         </EntityType>
+        <EntityType Name="FileDetails">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FileName" Type="varchar" MaxLength="60" />
+          <Property Name="FilePath" Type="nvarchar" MaxLength="300" />
+          <Property Name="UserId" Type="int" />
+        </EntityType>
         <EntityType Name="Job">
           <Key>
             <PropertyRef Name="JobId" />
@@ -57,12 +66,11 @@
           <Property Name="Profession" Type="nvarchar" MaxLength="100" />
           <Property Name="Education" Type="nvarchar" MaxLength="250" />
           <Property Name="MotivationLetter" Type="nvarchar(max)" />
-          <Property Name="CvName" Type="varchar(max)" />
-          <Property Name="FileContent" Type="varbinary(max)" />
           <Property Name="JobId" Type="int" />
           <Property Name="JobSeekerId" Type="int" />
           <Property Name="IsActive" Type="bit" />
           <Property Name="ApplyDate" Type="date" />
+          <Property Name="CvId" Type="int" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'SQTJobPortal.dbo.JobSeekerSkills' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -185,6 +193,18 @@ warning 6002: The table/view 'SQTJobPortal.dbo.JobSkills' does not have a primar
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_FileDetails_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="FileDetails" Type="Self.FileDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="SeekerId" />
+            </Principal>
+            <Dependent Role="FileDetails">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Job_Professions">
           <End Role="Professions" Type="Self.Professions" Multiplicity="0..1" />
           <End Role="Job" Type="Self.Job" Multiplicity="*" />
@@ -206,6 +226,18 @@ warning 6002: The table/view 'SQTJobPortal.dbo.JobSkills' does not have a primar
             </Principal>
             <Dependent Role="Job">
               <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_JobRequest_FileDetails">
+          <End Role="FileDetails" Type="Self.FileDetails" Multiplicity="0..1" />
+          <End Role="JobRequest" Type="Self.JobRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FileDetails">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="JobRequest">
+              <PropertyRef Name="CvId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -261,6 +293,7 @@ warning 6002: The table/view 'SQTJobPortal.dbo.JobSkills' does not have a primar
           <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Contact" EntityType="Self.Contact" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Country" EntityType="Self.Country" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FileDetails" EntityType="Self.FileDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Job" EntityType="Self.Job" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="JobRequest" EntityType="Self.JobRequest" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Professions" EntityType="Self.Professions" Schema="dbo" store:Type="Tables" />
@@ -301,6 +334,10 @@ warning 6002: The table/view 'SQTJobPortal.dbo.JobSkills' does not have a primar
             <End Role="Skills" EntitySet="Skills" />
             <End Role="JobSkills" EntitySet="JobSkills" />
           </AssociationSet>
+          <AssociationSet Name="FK_FileDetails_User" Association="Self.FK_FileDetails_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="FileDetails" EntitySet="FileDetails" />
+          </AssociationSet>
           <AssociationSet Name="FK_Job_Professions" Association="Self.FK_Job_Professions">
             <End Role="Professions" EntitySet="Professions" />
             <End Role="Job" EntitySet="Job" />
@@ -308,6 +345,10 @@ warning 6002: The table/view 'SQTJobPortal.dbo.JobSkills' does not have a primar
           <AssociationSet Name="FK_Job_User" Association="Self.FK_Job_User">
             <End Role="User" EntitySet="User" />
             <End Role="Job" EntitySet="Job" />
+          </AssociationSet>
+          <AssociationSet Name="FK_JobRequest_FileDetails" Association="Self.FK_JobRequest_FileDetails">
+            <End Role="FileDetails" EntitySet="FileDetails" />
+            <End Role="JobRequest" EntitySet="JobRequest" />
           </AssociationSet>
           <AssociationSet Name="FK_JobRequest_Job" Association="Self.FK_JobRequest_Job">
             <End Role="Job" EntitySet="Job" />
@@ -428,6 +469,7 @@ warning 6002: The table/view 'SQTJobPortal.dbo.JobSkills' does not have a primar
           <NavigationProperty Name="TypeofProfession" Relationship="Self.FK_User_TypeofProfession" FromRole="User" ToRole="TypeofProfession" />
           <NavigationProperty Name="JobSeekerSkills" Relationship="Self.FK__JobSeeker__JobSe__3F466844" FromRole="User" ToRole="JobSeekerSkills" />
           <NavigationProperty Name="JobRequest" Relationship="Self.FK_JobRequest_User" FromRole="User" ToRole="JobRequest" />
+          <NavigationProperty Name="FileDetails" Relationship="SQTJobPortalModel.FK_FileDetails_User" FromRole="User" ToRole="FileDetails" />
         </EntityType>
         <EntityType Name="JobRequest">
           <Key>
@@ -439,14 +481,14 @@ warning 6002: The table/view 'SQTJobPortal.dbo.JobSkills' does not have a primar
           <Property Name="Profession" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Education" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="MotivationLetter" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="CvName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="FileContent" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="JobId" Type="Int32" />
           <Property Name="JobSeekerId" Type="Int32" />
           <Property Name="IsActive" Type="Boolean" />
           <Property Name="ApplyDate" Type="DateTime" Precision="0" />
           <NavigationProperty Name="Job" Relationship="Self.FK_JobRequest_Job" FromRole="JobRequest" ToRole="Job" />
           <NavigationProperty Name="User" Relationship="Self.FK_JobRequest_User" FromRole="JobRequest" ToRole="User" />
+          <Property Name="CvId" Type="Int32" />
+          <NavigationProperty Name="FileDetails" Relationship="SQTJobPortalModel.FK_JobRequest_FileDetails" FromRole="JobRequest" ToRole="FileDetails" />
         </EntityType>
         <EntityType Name="JobSeekerSkills">
           <Key>
@@ -656,7 +698,51 @@ warning 6002: The table/view 'SQTJobPortal.dbo.JobSkills' does not have a primar
             <End Role="User" EntitySet="User" />
             <End Role="JobRequest" EntitySet="JobRequest" />
           </AssociationSet>
+          <EntitySet Name="FileDetails" EntityType="SQTJobPortalModel.FileDetails" />
+          <AssociationSet Name="FK_JobRequest_FileDetails" Association="SQTJobPortalModel.FK_JobRequest_FileDetails">
+            <End Role="FileDetails" EntitySet="FileDetails" />
+            <End Role="JobRequest" EntitySet="JobRequest" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FileDetails_User" Association="SQTJobPortalModel.FK_FileDetails_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="FileDetails" EntitySet="FileDetails" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="FileDetails">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FileName" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="JobRequest" Relationship="SQTJobPortalModel.FK_JobRequest_FileDetails" FromRole="FileDetails" ToRole="JobRequest" />
+          <Property Name="FilePath" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="UserId" Type="Int32" />
+          <NavigationProperty Name="User" Relationship="SQTJobPortalModel.FK_FileDetails_User" FromRole="FileDetails" ToRole="User" />
+        </EntityType>
+        <Association Name="FK_JobRequest_FileDetails">
+          <End Type="SQTJobPortalModel.FileDetails" Role="FileDetails" Multiplicity="0..1" />
+          <End Type="SQTJobPortalModel.JobRequest" Role="JobRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FileDetails">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="JobRequest">
+              <PropertyRef Name="CvId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FileDetails_User">
+          <End Type="SQTJobPortalModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="SQTJobPortalModel.FileDetails" Role="FileDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="SeekerId" />
+            </Principal>
+            <Dependent Role="FileDetails">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -757,14 +843,13 @@ warning 6002: The table/view 'SQTJobPortal.dbo.JobSkills' does not have a primar
           <EntitySetMapping Name="JobRequest">
             <EntityTypeMapping TypeName="SQTJobPortalModel.JobRequest">
               <MappingFragment StoreEntitySet="JobRequest">
+                <ScalarProperty Name="CvId" ColumnName="CvId" />
                 <ScalarProperty Name="RequestId" ColumnName="RequestId" />
                 <ScalarProperty Name="Phone" ColumnName="Phone" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Profession" ColumnName="Profession" />
                 <ScalarProperty Name="Education" ColumnName="Education" />
                 <ScalarProperty Name="MotivationLetter" ColumnName="MotivationLetter" />
-                <ScalarProperty Name="CvName" ColumnName="CvName" />
-                <ScalarProperty Name="FileContent" ColumnName="FileContent" />
                 <ScalarProperty Name="JobId" ColumnName="JobId" />
                 <ScalarProperty Name="JobSeekerId" ColumnName="JobSeekerId" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
@@ -787,6 +872,16 @@ warning 6002: The table/view 'SQTJobPortal.dbo.JobSkills' does not have a primar
                 <ScalarProperty Name="JobId" ColumnName="JobId" />
                 <ScalarProperty Name="SkillId" ColumnName="SkillId" />
                 <ScalarProperty Name="JS" ColumnName="JS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FileDetails">
+            <EntityTypeMapping TypeName="SQTJobPortalModel.FileDetails">
+              <MappingFragment StoreEntitySet="FileDetails">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="FilePath" ColumnName="FilePath" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
