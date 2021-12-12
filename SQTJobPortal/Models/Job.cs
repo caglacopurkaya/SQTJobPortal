@@ -9,8 +9,6 @@
 
 namespace SQTJobPortal.Models
 {
-    using Amazon.ElasticMapReduce.Model;
-    using PagedList;
     using System;
     using System.Collections.Generic;
     
@@ -19,7 +17,6 @@ namespace SQTJobPortal.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Job()
         {
-            this.JobSkills = new HashSet<JobSkills>();
             this.JobRequest = new HashSet<JobRequest>();
         }
     
@@ -36,10 +33,9 @@ namespace SQTJobPortal.Models
         public Nullable<int> ProfessionId { get; set; }
         public Nullable<int> UserId { get; set; }
         public Nullable<bool> IsActive { get; set; }
-       
+        public string Skills { get; set; }
+    
         public virtual Category Category { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<JobSkills> JobSkills { get; set; }
         public virtual Professions Professions { get; set; }
         public virtual User User { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

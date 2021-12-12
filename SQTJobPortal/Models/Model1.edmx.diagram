@@ -10,22 +10,15 @@
         <EntityTypeShape EntityType="SQTJobPortalModel.Country" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
         <EntityTypeShape EntityType="SQTJobPortalModel.Job" Width="1.5" PointX="5.25" PointY="3.625" IsExpanded="true" />
         <EntityTypeShape EntityType="SQTJobPortalModel.Professions" Width="1.5" PointX="3" PointY="9.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="SQTJobPortalModel.Skills" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="SQTJobPortalModel.TypeofProfession" Width="1.5" PointX="0.75" PointY="2.125" IsExpanded="true" />
         <EntityTypeShape EntityType="SQTJobPortalModel.User" Width="1.5" PointX="3" PointY="3.375" IsExpanded="true" />
         <EntityTypeShape EntityType="SQTJobPortalModel.JobRequest" Width="1.5" PointX="10.5" PointY="4" IsExpanded="true" />
-        <EntityTypeShape EntityType="SQTJobPortalModel.JobSeekerSkills" Width="1.5" PointX="8.25" PointY="4.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="SQTJobPortalModel.JobSkills" Width="1.5" PointX="7.5" PointY="1.875" IsExpanded="true" />
         <AssociationConnector Association="SQTJobPortalModel.FK__Job__CategoryId__3A81B327" ManuallyRouted="false" />
         <AssociationConnector Association="SQTJobPortalModel.FK_User_Country" ManuallyRouted="false" />
-        <AssociationConnector Association="SQTJobPortalModel.FK__JobSkills__JobId__412EB0B6" ManuallyRouted="false" />
         <AssociationConnector Association="SQTJobPortalModel.FK_Job_Professions" ManuallyRouted="false" />
         <AssociationConnector Association="SQTJobPortalModel.FK_Job_User" ManuallyRouted="false" />
         <AssociationConnector Association="SQTJobPortalModel.FK_JobRequest_Job" ManuallyRouted="false" />
-        <AssociationConnector Association="SQTJobPortalModel.FK__JobSeeker__Skill__403A8C7D" ManuallyRouted="false" />
-        <AssociationConnector Association="SQTJobPortalModel.FK__JobSkills__Skill__4222D4EF" ManuallyRouted="false" />
         <AssociationConnector Association="SQTJobPortalModel.FK_User_TypeofProfession" ManuallyRouted="false" />
-        <AssociationConnector Association="SQTJobPortalModel.FK__JobSeeker__JobSe__3F466844" ManuallyRouted="false" />
         <AssociationConnector Association="SQTJobPortalModel.FK_JobRequest_User" ManuallyRouted="false" />
         <EntityTypeShape EntityType="SQTJobPortalModel.FileDetails" Width="1.5" PointX="10.375" PointY="0.875" />
         <AssociationConnector Association="SQTJobPortalModel.FK_JobRequest_FileDetails" />

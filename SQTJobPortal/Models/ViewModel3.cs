@@ -22,8 +22,8 @@ namespace SQTJobPortal.Models
         public int UserId { get; set; }
         public Nullable<bool> IsActive { get; set; }
         public string CompanyEmail { get; set; }
+        public string Skills{ get; set; }
 
-      
 
     }
 }

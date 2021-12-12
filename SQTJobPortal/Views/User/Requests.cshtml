@@ -169,6 +169,7 @@
                                             <th>Name</th>
                                             <th>Status</th>
                                             <th>Profession</th>
+                                            <th>Skills</th>
                                             <th>Education</th>
                                             <th>Phone</th>
                                             <th>Email</th>
@@ -208,6 +209,7 @@
                                             }
 
                                             <td> @viewModel.request.Profession </td>
+                                            <td> @viewModel.request.User.Skills </td>
                                             <td> @viewModel.request.Education </td>
 
 
@@ -215,11 +217,11 @@
                                             <td> @viewModel.request.Email  </td>
 
                                             <td> @Html.ActionLink("Download", "Download", "User", new { id = viewModel.request.FileDetails.Id }, null)</td>
-                                         
 
-                                                    
-                                                   
-                                          
+
+
+
+
                                             <td>
                                                 <div class="clicker" tabindex="1">Click for Motivation Letter</div>
                                                 <div class="hiddendiv">@viewModel.request.MotivationLetter</div>
@@ -241,6 +243,7 @@
                                                 <th>Name</th>
                                                 <th>Status</th>
                                                 <th>Profession</th>
+                                                <th>Skills</th>
                                                 <th>Education</th>
                                                 <th>Phone</th>
                                                 <th>Email</th>

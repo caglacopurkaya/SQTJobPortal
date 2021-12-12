@@ -208,6 +208,7 @@ namespace SQTJobPortal.Controllers
                     jobs.PostedDate = viewModel.PostedDate;
                     jobs.DueToApply = viewModel.DueToApply;
                     jobs.JobType = viewModel.JobType;
+                    jobs.Skills= viewModel.Skills;
                     jobs.Salary = viewModel.Salary;
                     jobs.CategoryId = viewModel.CategoryId;
                     jobs.ProfessionId = viewModel.ProfessionId;
@@ -341,6 +342,7 @@ namespace SQTJobPortal.Controllers
             jobToUpdate.Experience = job.Experience;
             jobToUpdate.DueToApply = job.DueToApply;
             jobToUpdate.Salary = job.Salary;
+            jobToUpdate.Skills = job.Skills;
             jobToUpdate.JobType = job.JobType;
 
 

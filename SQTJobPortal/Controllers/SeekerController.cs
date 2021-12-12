@@ -65,32 +65,7 @@ namespace SQTJobPortal.Controllers
 
             return View(db.Job.Where(i => i.JobId == id).FirstOrDefault());
         }
-        //[Authorize(Roles = "JobSeeker")]
-        //public ActionResult JobDetails()
-        //{
-        //    var jointest = from c in db.User
-        //                   join jc in db.Job on c.SeekerId equals jc.UserId
-
-        //                   join req in db.JobRequest on jc.JobId equals req.JobId
-
-
-        //                   select new ViewModel
-        //                   {
-        //                       companies = c,
-        //                       jobs = jc,
-        //                       request = req,
-
-
-
-        //                   };
-
-        //    ViewData["Jointable"] = jointest;
-
-        //    User user = (User)User.Identity;
-
-
-        //    return View(user);
-        //}
+        
 
 
 
@@ -100,21 +75,21 @@ namespace SQTJobPortal.Controllers
         {
             var model = new ViewModel2();
 
-            //model.users = db.User.FirstOrDefault(x => x.SeekerId == id);
-            model.users = (User)User.Identity;
+            model.users = db.User.FirstOrDefault(x => x.SeekerId == id);
+           
             if (id== null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            //model.jobs = db.Job.FirstOrDefault(x => x.JobId == id);
+            model.jobs = db.Job.FirstOrDefault(x => x.JobId == id);
             if (model.users == null)
             {
                 return HttpNotFound();
             }
 
             CompanyHelper.id = model.users.SeekerId;
-            //JobHelper.id = model.jobs.JobId;
-          
+            JobHelper.id = model.jobs.JobId;
+
             return View(model);
         }
 
@@ -134,6 +109,7 @@ namespace SQTJobPortal.Controllers
             req.JobSeekerId = CompanyHelper.id;
             req.Phone = viewModel.Phone;
             req.Profession = viewModel.Profession;
+
             req.MotivationLetter = viewModel.MotivationLetter;
             req.CvId = findFileId.Id;
 

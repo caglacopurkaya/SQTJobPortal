@@ -14,6 +14,7 @@ namespace SQTJobPortal.Models
         public string Profession { get; set; }
         public string Education { get; set; }
         public string MotivationLetter { get; set; }
+        public string Skills { get; set; }
         public Nullable<int> JobId { get; set; }
         public Nullable<int> JobSeekerId { get; set; }
         public Nullable<bool> IsActive { get; set; }
@@ -24,5 +25,6 @@ namespace SQTJobPortal.Models
         public virtual Job Job { get; set; }
         public virtual User User { get; set; }
         public virtual FileDetails FileDetails { get; set; }
+
     }
 }

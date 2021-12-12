@@ -30,12 +30,9 @@ namespace SQTJobPortal.Models
         public virtual DbSet<Country> Country { get; set; }
         public virtual DbSet<Job> Job { get; set; }
         public virtual DbSet<Professions> Professions { get; set; }
-        public virtual DbSet<Skills> Skills { get; set; }
         public virtual DbSet<TypeofProfession> TypeofProfession { get; set; }
         public virtual DbSet<User> User { get; set; }
         public virtual DbSet<JobRequest> JobRequest { get; set; }
-        public virtual DbSet<JobSeekerSkills> JobSeekerSkills { get; set; }
-        public virtual DbSet<JobSkills> JobSkills { get; set; }
         public virtual DbSet<FileDetails> FileDetails { get; set; }
     }
 }

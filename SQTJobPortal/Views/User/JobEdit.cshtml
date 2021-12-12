@@ -174,42 +174,105 @@
                                 @using (Html.BeginForm())
                                 {
                                     @Html.AntiForgeryToken()
-                                    <div class="form-horizontal">
-                                        @Html.ValidationSummary(true)
-                                  
+                                <div class="form-horizontal">
+                                    @Html.ValidationSummary(true)
 
-                                        <h2 class="card-inside-title">JOB TITLE</h2>
-                                        <div class="row clearfix">
-                                            <div class="col-sm-12">
-                                                <div class="form-group">
-                                                    <div class="form-line">
-                                                        <input type="text" class="form-control" name="Title" id="Title" placeholder="Please enter the title" />
-                                                    </div>
+
+                                    <h2 class="card-inside-title">JOB TITLE</h2>
+                                    <div class="row clearfix">
+                                        <div class="col-sm-12">
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <input type="text" class="form-control" name="Title" id="Title" placeholder="Please enter the title" />
                                                 </div>
-
                                             </div>
+
                                         </div>
+                                    </div>
 
 
 
 
-                                        <div class="row clearfix">
-                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                <div class="card">
-                                                    <div class="header">
-                                                        <h2>Description</h2>
+                                    <div class="row clearfix">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <div class="card">
+                                                <div class="header">
+                                                    <h2>Description</h2>
 
-                                                    </div>
-                                                    <div class="body">
-                                                        <h2 class="card-inside-title">Basic Example</h2>
-                                                        <div class="row clearfix">
-                                                            <div class="col-sm-12">
-                                                                <div class="form-group">
-                                                                    <div class="form-line">
-                                                                        <textarea rows="4" class="form-control no-resize" name="Description" id="Description" placeholder="Please type the description for job..."></textarea>
-                                                                    </div>
+                                                </div>
+                                                <div class="body">
+                                                    <h2 class="card-inside-title">Basic Example</h2>
+                                                    <div class="row clearfix">
+                                                        <div class="col-sm-12">
+                                                            <div class="form-group">
+                                                                <div class="form-line">
+                                                                    <textarea rows="4" class="form-control no-resize" name="Description" id="Description" placeholder="Please type the description for job..."></textarea>
                                                                 </div>
                                                             </div>
+                                                        </div>
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+                                    <h2 class="card-inside-title">EXPERIENCES</h2>
+                                    <div class="row clearfix">
+                                        <div class="col-sm-12">
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <input type="text" class="form-control" name="Experience" id="Experience" placeholder="Please enter experience year" />
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <h2 class="card-inside-title">SKILLS</h2>
+                                    <div class="row clearfix">
+                                        <div class="col-sm-12">
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <input type="text" class="form-control" name="Skills" id="Skills" placeholder="Please enter experience year" />
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+
+
+
+
+
+                                    <div class="row clearfix">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <div class="card">
+                                                <div class="header">
+                                                    <h2>
+                                                        DUE  DATE
+
+                                                    </h2>
+
+                                                </div>
+                                                <div class="body">
+                                                    <div class="row clearfix">
+
+
+                                                        <div class="col-xs-12">
+                                                            <h2 class="card-inside-title">DUE DATE</h2>
+                                                            <div class="form-group">
+                                                                <div class="form-line" id="bs_datepicker_container">
+                                                                    <input type="text" class="form-control" name="DueToApply" id="DueToApply" placeholder="Please choose a date for end...">
+                                                                </div>
+                                                            </div>
+                                                            <span class="input-group-addon">
+                                                                <i class="material-icons">date_range</i>
+                                                            </span>
                                                         </div>
 
 
@@ -217,94 +280,43 @@
                                                 </div>
                                             </div>
                                         </div>
+                                    </div>
 
-
-
-                                        <h2 class="card-inside-title">EXPERIENCES</h2>
-                                        <div class="row clearfix">
-                                            <div class="col-sm-12">
-                                                <div class="form-group">
-                                                    <div class="form-line">
-                                                        <input type="text" class="form-control" name="Experience" id="Experience" placeholder="Please enter experience year" />
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                        </div>
-
-
-
-
-
-
-                                        <div class="row clearfix">
-                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                <div class="card">
-                                                    <div class="header">
-                                                        <h2>
-                                                            DUE  DATE
-
-                                                        </h2>
-
-                                                    </div>
-                                                    <div class="body">
-                                                        <div class="row clearfix">
-
-
-                                                            <div class="col-xs-12">
-                                                                <h2 class="card-inside-title">DUE DATE</h2>
-                                                                <div class="form-group">
-                                                                    <div class="form-line" id="bs_datepicker_container">
-                                                                        <input type="text" class="form-control" name="DueToApply" id="DueToApply" placeholder="Please choose a date for end...">
-                                                                    </div>
-                                                                </div>
-                                                                <span class="input-group-addon">
-                                                                    <i class="material-icons">date_range</i>
-                                                                </span>
-                                                            </div>
-
-
-                                                        </div>
-                                                    </div>
+                                    <h2 class="card-inside-title">SALARY & JOB TYPE</h2>
+                                    <div class="row clearfix">
+                                        <div class="col-sm-12">
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <input type="text" class="form-control" name="Salary" id="Salary" placeholder="Enter the salary" />
                                                 </div>
                                             </div>
                                         </div>
-
-                                        <h2 class="card-inside-title">SALARY & JOB TYPE</h2>
-                                        <div class="row clearfix">
-                                            <div class="col-sm-12">
-                                                <div class="form-group">
-                                                    <div class="form-line">
-                                                        <input type="text" class="form-control" name="Salary" id="Salary" placeholder="Enter the salary" />
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                        <div class="row clearfix">
-
-                                            <div class="col-sm-12">
-                                                <div class="form-group">
-                                                    <div class="form-line">
-                                                        <input type="text" class="form-control" name="JobType" id="JobType" placeholder="Enter the Job Type" />
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-
-
-
-                                        @Html.HiddenFor(x => x.UserId)
-                                        <div class="form-group">
-
-                                            @*<input type="submit" value="Create" class="btn btn-default" />*@
-                                            <input type="submit" value="EDIT" class="btn btn-danger waves-effect" style="width:100%" />
-
-                                        </div>
-
 
                                     </div>
+                                    <div class="row clearfix">
+
+                                        <div class="col-sm-12">
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <input type="text" class="form-control" name="JobType" id="JobType" placeholder="Enter the Job Type" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+
+                                    @Html.HiddenFor(x => x.UserId)
+                                    <div class="form-group">
+
+                                        @*<input type="submit" value="Create" class="btn btn-default" />*@
+                                        <input type="submit" value="EDIT" class="btn btn-danger waves-effect" style="width:100%" />
+
+                                    </div>
+
+
+                                </div>
 
 
 
